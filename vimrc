@@ -398,8 +398,8 @@ let g:neocomplcache_min_syntax_length = 3
 ""  # I prefer two spaces instead of 4 for tabs:
 ""  $ sed '/setlocal tabstop=4/c setlocal tabstop=2' \
 ""  $   $HOME/.vim/bundle/outliner/ftplugin/vo_base.vim > /tmp/vo_base.1.vim
-""  $ sed '/setlocal shiftwidth=4/c setlocal shiftwidth=2' /tmp/vo_base.1.vim > \ 
-""  $   $HOME/.vim/bundle/outliner/ftplugin/vo_base.vim
+""  $ sed '/setlocal shiftwidth=4/c setlocal shiftwidth=2' \
+""  $   /tmp/vo_base.1.vim > $HOME/.vim/bundle/outliner/ftplugin/vo_base.vim
 ""
 "" Resources:
 ""  http://www.troubleshooters.com/projects/alt-vimoutliner-litt/
@@ -476,3 +476,35 @@ let g:vo_modules_load = "checkbox:hoist"
 ""  $ cd $HOME/.vim
 ""  $ git add .
 ""  $ git commit -m "Initial vim configuration"
+
+"" From my vimrc.local
+""set autochdir
+""set nowrap
+""set guifont="Bitstream\ Vera\ Sans\ Mono\ 12"
+""let vimclojure#HighlightBuiltins=1	" Highlight Clojure's builtins
+""let vimclojure#ParenRainbow=1		" Rainbow parantheses'
+""let g:miniBufExplMapWindowNavVim = 1 	" 
+""let g:miniBufExplMapWindowNavArrows = 1 " 
+""let g:miniBufExplMapCTabSwitchBufs = 1 	" 
+""let g:miniBufExplModSelTarget = 1 	" 
+
+" --- OmniCppComplete ---
+" -- required --
+" -- optional --
+" auto close options when exiting insert mode
+""autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+""set completeopt=menu,menuone
+" -- configs --
+""let OmniCpp_MayCompleteDot = 1 " autocomplete with .
+""let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+""let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
+""let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
+""let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
+""let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
+" -- ctags --
+" map <ctrl>+F12 to generate ctags for current folder:
+""map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+" add current directory's generated tags file to available tags
+""let $kernel_version=system('uname -r | tr -d "\n"')
+""set tags=./tags,tags,../tags,../../tags,../../../tags,../../../../tags,/lib/modules/$kernel_version/build/tags,/usr/include/tags
+

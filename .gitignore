@@ -9,7 +9,7 @@ tmp/**/*
 .DS_Store
 *.tmp
 *.bak
- .*.sw*
+.*.sw*
 *~.nib
 Thumbs.db
 Desktop.ini
