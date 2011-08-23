@@ -180,7 +180,8 @@ filetype plugin indent on
 syntax on                             " Enable syntax highlighting.
 set t_Co=256                          " Enable 256 color mode in terminal.
 set background=dark                   " I like dark backgrounds.
-colors vividchalk                     " My current favorite color scheme.
+"colors vividchalk                     " My current favorite color scheme.
+colors koehler
 
 " Show tabs and tailing spaces.
 " Note: to insert the middle point press ctrl+k .M in insert mode
@@ -463,6 +464,27 @@ let g:vo_modules_load = "checkbox:hoist"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" MiniBufExplorer Plugin
+""
+"" Description:
+""  Plugin for managing Buffers. Places a small window on the screen.
+""
+"" Prerequisites:
+""  - Make sure you have the base system packages installed including git-core.
+""  - Make sure you have the base system packages installed including wget.
+""  - Make sure you have the pathogen.vim plugin installed correctly.
+""
+"" Installation:
+""  $ mkdir -p $HOME/.vim/bundle/minibufexplorer/plugin
+""  $ wget http://www.vim.org/scripts/download_script.php?src_id=3640 \
+""    -O $HOME/.vim/bundle/minibufexplorer/plugin/minibufexplorer.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:miniBufExplMapWindowNavVim = 1    "
+let g:miniBufExplMapWindowNavArrows = 1 "
+let g:miniBufExplMapCTabSwitchBufs = 1  "
+let g:miniBufExplModSelTarget = 1       "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Initial Git Commit
 ""
 "" Description:
@@ -483,10 +505,6 @@ let g:vo_modules_load = "checkbox:hoist"
 ""set guifont="Bitstream\ Vera\ Sans\ Mono\ 12"
 ""let vimclojure#HighlightBuiltins=1	" Highlight Clojure's builtins
 ""let vimclojure#ParenRainbow=1		" Rainbow parantheses'
-""let g:miniBufExplMapWindowNavVim = 1 	" 
-""let g:miniBufExplMapWindowNavArrows = 1 " 
-""let g:miniBufExplMapCTabSwitchBufs = 1 	" 
-""let g:miniBufExplModSelTarget = 1 	" 
 
 " --- OmniCppComplete ---
 " -- required --
