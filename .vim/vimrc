@@ -1,40 +1,129 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+"~/.vim/vimrc
 
-set rtp+=~/.vim/bundle/vundle
+filetype off " required for vundle
+
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
+" let vundle manage vundle
+" required
 Bundle 'gmarik/vundle'
-
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'rails.vim'
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
-" ...
-
-filetype plugin indent on     " required! 
-"
+Bundle 'jnurmine/Zenburn'
+Bundle 'altercation/vim-colors-solarized'
 " Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
 "
-" :BundleInstall  - install bundles (won't update installed)
-" :BundleInstall! - update if installed
-"
-" :Bundles foo    - search for foo
-" :Bundles! foo   - refresh cached list and search for foo
-"
-" :BundleClean    - confirm removal of unused bundles
-" :BundleClean!   - remove without confirmation
-"
-" see :h vundle for more details
-" or wiki for FAQ
-" Note: comments after Bundle command are not allowed..
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle commands are not allowed.
+
+" general
+set nocompatible
+set spelllang=en_us
+set history=10000
+set backspace=indent,eol,start
+set number
+set autoread
+set whichwrap+=<,>,[,],h,l
+set display=lastline
+set virtualedit=block
+set scrolloff=3
+set laststatus=2
+set foldmethod=marker
+" no bells!
+set noerrorbells visualbell t_vb=
+" text wrapping
+set wrap linebreak
+" disable welcome screen and use short messages
+set shortmess=atToOI
+
+" set directories
+set undodir=~/.cache/vim/undo
+set directory=~/.cache/vim/swap
+set backupdir=~/.cache/vim/backup
+set viminfo+=n~/.cache/vim/viminfo
+
+" % matches on if/else, tags, etc.
+runtime macros/matchit.vim
+
+" command-line completion
+set wildmenu wildmode=list:longest,full
+
+" omit numbers in html output
+let g:html_number_lines = 0
+
+" statusline
+set showmode showcmd ruler
+
+" default indent style
+set expandtab softtabstop=2 shiftwidth=2
+set cinoptions=(0
+
+autocmd FileType conque_term setlocal nocursorline
+
+autocmd FileType rst,markdown setl textwidth=79
+
+" searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
+
+let mapleader = ","
+
+" F4 toggles paste mode
+set pastetoggle=<F4>
+
+" F6 toggles spell checking
+nn <F6> :setlocal spell! spell?<CR>
+
+"if has('mouse')
+"    set mouse=a
+"endif
+
+if has ('gui_running')
+    " autoselect, console dialogs, don't source menu.vim
+    set guioptions=acM
+    set mousefocus
+    set guifont=Monospace\ 9
+    autocmd GUIEnter * set t_vb=
+    map <S-Insert> <MiddleMouse>
+    map! <S-Insert> <MiddleMouse>
+endif
+
+" colors
+set background=dark
+
+if has ('gui_running') || &t_Co > 255
+    colorscheme solarized
+    let g:solarized_termcolors = 256
+    set cursorline
+    let g:Powerline_symbols = 'fancy'
+    let g:Powerline_colorscheme = 'solarized'
+endif
+
+if has ('gui_running') == 0 && &t_Co > 255
+     let g:solarized_termtrans = 1
+endif
+
+if has ('gui_running') || &t_Co > 2
+    syntax on
+    " highlight trailing whitespace, except when typing at eol
+    highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+endif
+
+let g:no_rust_conceal = 1
+
+" detect filetype and use appropriate indenting and plugins
+filetype indent plugin on
+
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1

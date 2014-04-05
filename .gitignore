@@ -1,23 +1,2 @@
-.bundle
-db/.sqlite3
-*.[oa]
-*.obj
-.metadata
-log/*.log
-tmp/**
-tmp/**/*
-.DS_Store
-*.tmp
-*.bak
-.*.sw*
-*~.nib
-Thumbs.db
-Desktop.ini
- *~
-tags
-tags-*
-*.apk
-bin
-gen
-local.properties
-*.jar
+# Blacklist everything, git add as the whitelist.
+*

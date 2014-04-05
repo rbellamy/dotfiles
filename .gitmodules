@@ -1,21 +1,6 @@
-[submodule "vividchalk"]
-	path = .vim/bundle/vividchalk
-	url = https://github.com/tpope/vim-vividchalk.git
-[submodule "ack"]
-	path = .vim/bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
-[submodule "nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vcscommand"]
-	path = .vim/bundle/vcscommand
-	url = git://repo.or.cz/vcscommand.git
-[submodule "neocomplcache"]
-	path = .vim/bundle/neocomplcache
-	url = https://github.com/Shougo/neocomplcache.git
-[submodule "tgpg"]
-	path = .vim/bundle/tgpg
-	url = https://github.com/tomtom/tgpg_vim.git
-[submodule "surround"]
-	path = .vim/bundle/surround
-	url = https://github.com/tpope/vim-surround.git
+[submodule "vundle"]
+  path = .vim/bundle/vundle
+  url = https://github.com/gmarik/vundle.git
+[submodule "dircolors-solarized"]
+  path = .config/dircolors-solarized
+  url = https://github.com/seebi/dircolors-solarized.git
