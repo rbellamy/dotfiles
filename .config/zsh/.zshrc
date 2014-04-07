@@ -24,30 +24,30 @@ zmodload zsh/complist
 # }}}
 
 # shell options {{{
-setopt nobeep \
-    notify \
-    nobgnice \
-    correct \
-    interactivecomments \
-    printexitvalue \
-    autocd \
-    autopushd \
-    pushdtohome \
-    chaselinks \
-    histverify \
-    histappend \
-    sharehistory \
-    histreduceblanks \
-    histignorespace \
-    histignorealldups \
-    histsavenodups \
-    braceccl \
-    dotglob \
-    extendedglob \
-    numericglobsort \
-    nolisttypes \
-    promptsubst \
-    completealiases
+setopt NO_BEEP \
+    NOTIFY \
+    NO_BG_NICE \
+    CORRECT \
+    INTERACTIVE_COMMENTS \
+    PRINT_EXIT_VALUE \
+    AUTO_CD \
+    AUTO_PUSHD \
+    PUSHD_TO_HOME \
+    CHASE_LINKS \
+    HIST_VERIFY \
+    HIST_APPEND \
+    SHARE_HISTORY \
+    HIST_REDUCE_BLANKS \
+    HIST_IGNORE_SPACE \
+    HIST_IGNORE_DUPS \
+    HIST_SAVE_NO_DUPS \
+    BRACE_CCL \
+    DOT_GLOB \
+    EXTENDED_GLOB \
+    NUMERIC_GLOB_SORT \
+    NO_LIST_TYPES \
+    PROMPT_SUBST \
+    COMPLETE_ALIASES
 
 # input with no command
 READNULLCMD=$PAGER
