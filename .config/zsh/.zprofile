@@ -6,6 +6,9 @@ umask 077
 # constant environment variables
 export PATH="$HOME"/.local/bin:$PATH
 
+# JAVA_OPTIONS
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
 # manpage colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
@@ -64,9 +67,25 @@ export NCURSES_NO_UTF8_ACS=1
 # colors
 eval $(dircolors -b ~/.config/dircolors-solarized/dircolors.256dark)
 
-# Enable C-S-t in termite which opens a new terminal in the same working
-# directory.
-if [[ $TERM == xterm-termite ]]; then
-    . /etc/profile.d/vte.sh
-    __vte_osc7
-fi
+case "$TERM" in
+xterm-termite)
+  . /etc/profile.d/vte.sh
+  __vte_osc7
+  ;;
+*-256color)
+  alias ssh='TERM=${TERM%-256color} ssh'
+  ;;
+*)
+  POTENTIAL_TERM=${TERM}-256color
+  POTENTIAL_TERMINFO=${TERM:0:1}/$POTENTIAL_TERM
+
+  # better to check $(toe -a | awk '{print $1}') maybe?
+  BOX_TERMINFO_DIR=/usr/share/terminfo
+  [[ -f ${BOX_TERMINFO_DIR}/${POTENTIAL_TERMINFO} ]] && \
+    export TERM=${POTENTIAL_TERM}
+
+  HOME_TERMINFO_DIR=$HOME/.terminfo
+  [[ -f ${HOME_TERMINFO_DIR}/${POTENTIAL_TERMINFO} ]] && \
+    export TERM=${POTENTIAL_TERM}
+  ;;
+esac
