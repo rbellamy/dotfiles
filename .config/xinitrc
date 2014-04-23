@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+
+#exec gnome-shell
+exec i3
