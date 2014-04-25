@@ -75,10 +75,14 @@ zstyle ':completion:*' ignore-parents parent pwd
 # title (for vte, xterm and rxvt) {{{
 case "$TERM" in
   vte*|xterm*|rxvt*|putty*)
-    update_title() { print -Pn '\e];%n (%~) - Terminal\a' } ;;
-    *)
-      update_title() {} ;;
-    esac
+    update_title() {
+      print -Pn '\e];%n (%~) - Terminal\a'
+    }
+    ;;
+  *)
+    update_title() {}
+    ;;
+esac
 # }}}
 
 # prompt {{{
@@ -161,7 +165,7 @@ if ! $isroot; then
   # sudo guis
   alias gparted='sudo -b gparted &>/dev/null'
   alias zenmap='sudo -b zenmap &>/dev/null'
-  else
+else
   # root guis
   alias gparted='gparted &>/dev/null &'
   alias zenmap='zenmap &>/dev/null &'
@@ -169,22 +173,48 @@ fi
 # }}}
 
 # functions {{{
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi
+case "$TERM" in
+  xterm-termite)
+    . /etc/profile.d/vte.sh
+    __vte_osc7
+    ;;
+  *-256color)
+    alias ssh='TERM=${TERM%-256color} ssh'
+    ;;
+  *)
+    POTENTIAL_TERM=${TERM}-256color
+    POTENTIAL_TERMINFO=${TERM:0:1}/$POTENTIAL_TERM
+
+    # better to check $(toe -a | awk '{print $1}') maybe?
+    BOX_TERMINFO_DIR=/usr/share/terminfo
+    [[ -f ${BOX_TERMINFO_DIR}/${POTENTIAL_TERMINFO} ]] && \
+      export TERM=${POTENTIAL_TERM}
+
+    HOME_TERMINFO_DIR=$HOME/.terminfo
+    [[ -f ${HOME_TERMINFO_DIR}/${POTENTIAL_TERMINFO} ]] && \
+      export TERM=${POTENTIAL_TERM}
+    ;;
+esac
 
 precmd() {
   update_title
   vcs_info
 }
 
+# history search - returns historical commands like
 h() {
   if [ -z "$*" ]; then
     history 1;
   else
     history 1 | egrep "$@";
   fi
+}
+
+compdefas() {
+  local a
+  a="$1"
+  shift
+  compdef "$_comps[$a]" "${(@)*}=$a"
 }
 
 # bg on empty line, push-input on non-empty line
