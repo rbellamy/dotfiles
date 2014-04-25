@@ -8,7 +8,7 @@ if [[ -n "$DISPLAY" ]]; then
     exit 1
 fi
 
-xinitrc="${XDG_CONFIG_HOME:-$HOME/.config}"/xinitrc
+xinitrc="${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xinitrc
 log="$XDG_CACHE_HOME"/xsession.log
 
 if [[ -z "$XAUTHORITY" ]]; then
