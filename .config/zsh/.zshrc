@@ -11,8 +11,11 @@ have() { which $1 &>/dev/null || return 1 }
 C=$(tput colors)
 
 fpath=(~/.config/zsh/functions $fpath)
+autoload spectrum
 if (( C == 256 )); then
-  autoload spectrum && spectrum # Set up 256 color support.
+  spectrum # Set up 256 color support.
+else
+  spectrum C # Set up color support based on C
 fi
 # }}}
 
