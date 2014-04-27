@@ -1,22 +1,11 @@
+# update the function path {{{
+fpath=(~/.config/zsh/functions $fpath)
+# }}}
+
 # checks {{{
 (( UID == 0 )) && isroot=true || isroot=false
 # test if command is available
 have() { which $1 &>/dev/null || return 1 }
-# }}}
-
-# spectrum {{{
-# Find out how many colors the terminal is capable of putting out.
-# Color-related settings _must_ use this if they don't want to blow up on less
-# endowed terminals.
-C=$(tput colors)
-
-fpath=(~/.config/zsh/functions $fpath)
-autoload spectrum
-if (( C == 256 )); then
-  spectrum # Set up 256 color support.
-else
-  spectrum C # Set up color support based on C
-fi
 # }}}
 
 # modules {{{
@@ -198,6 +187,22 @@ case "$TERM" in
       export TERM=${POTENTIAL_TERM}
     ;;
 esac
+
+# spectrum {{{
+# And now that we've got our terminal sorted out - grabulating a
+# 256 color terminal if at all possible, we can do that spectrum thang!
+# Find out how many colors the terminal is capable of putting out.
+# Color-related settings _must_ use this if they don't want to blow up on less
+# endowed terminals.
+C=$(tput colors)
+
+autoload spectrum
+if (( C == 256 )); then
+  spectrum # Set up 256 color support.
+else
+  spectrum ${C} # Set up color support based on C
+fi
+# }}}
 
 precmd() {
   update_title

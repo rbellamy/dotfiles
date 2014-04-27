@@ -32,7 +32,7 @@ else
 fi
 
 # Fill the color maps
-for color in (000..${SUPPORT}); do
+for color in `seq -w 2 ${SUPPORT}`; do
     FG[${color}]="%{[38;5;${color}m%}"
     BG[${color}]="%{[48;5;${color}m%}"
 done
