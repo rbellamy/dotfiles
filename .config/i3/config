@@ -8,13 +8,14 @@ workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
 # use super key
-set $mod mod4
+set $mod mod1
+set $sup mod4
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $sup+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -88,53 +89,58 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $sup+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $sup+Shift+r restart
 # exit i3
-bindsym $mod+Shift+e exit
+bindsym $sup+Shift+e exit
 
 # resize window (you can also use the mouse for that)
 mode "RESIZE MODE" {
   bindsym h resize shrink width 1 px or 1 ppt
-    bindsym j resize grow height 1 px or 1 ppt
-    bindsym k resize shrink height 1 px or 1 ppt
-    bindsym l resize grow width 1 px or 1 ppt
+  bindsym j resize grow height 1 px or 1 ppt
+  bindsym k resize shrink height 1 px or 1 ppt
+  bindsym l resize grow width 1 px or 1 ppt
 
-    bindsym q mode "default"
-    bindsym Escape mode "default"
+  bindsym q mode "default"
+  bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "RESIZE MODE"
+bindsym $sup+r mode "RESIZE MODE"
 
 mode "DMENU MODE" {
   bindsym d exec --no-startup-id ditch; mode "default"
-    bindsym w exec --no-startup-id dwall; mode "default"
-    bindsym p exec --no-startup-id dmenu_run; mode "default"
-    bindsym u exec --no-startup-id dmenu_loader ~/.local/share/plaid/plaid_dmenu; mode "default"
-    bindsym o exec --no-startup-id dmenu_loader ~/.local/share/dmenu/dmenu_pdf; mode "default"
-    bindsym l exec --no-startup-id dmenu_loader ~/.local/share/dmenu/dmenu_pls; mode "default"
+  bindsym w exec --no-startup-id dwall; mode "default"
+  bindsym p exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -l 20"; mode "default"
+#  bindsym p exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -l 20"; mode "default"
+#  bindsym p exec --no-startup-id dmenu_run; mode "default"
+  bindsym u exec --no-startup-id dmenu_loader ~/.local/share/plaid/plaid_dmenu; mode "default"
+  bindsym o exec --no-startup-id dmenu_loader ~/.local/share/dmenu/dmenu_pdf; mode "default"
+  bindsym l exec --no-startup-id dmenu_loader ~/.local/share/dmenu/dmenu_pls; mode "default"
 
-    bindsym q mode "default"
-    bindsym Escape mode "default"
+  bindsym q mode "default"
+  bindsym Escape mode "default"
 }
 
-bindsym $mod+p mode "DMENU MODE"
+bindsym $sup+p mode "DMENU MODE"
 
 # control music
 mode "MPD CONTROL" {
   bindsym s exec mpc stop
-    bindsym p exec mpc toggle
-    bindsym l exec mpc next
-    bindsym h exec mpc prev
-    bindsym equal exec mpc volume +3
-    bindsym minus exec mpc volume -3
+  bindsym p exec mpc toggle
+  bindsym l exec mpc next
+  bindsym h exec mpc prev
+  bindsym equal exec mpc volume +3
+  bindsym minus exec mpc volume -3
 
-    bindsym q mode "default"
-    bindsym Escape mode "default"
+  bindsym q mode "default"
+  bindsym Escape mode "default"
 }
 
-bindsym $mod+m mode "MPD CONTROL"
+bindsym $sup+m mode "MPD CONTROL"
+
+# rofi - simpleswitcher replacement - for better Alt-Tab
+bindsym $mod+Tab exec rofi -now -font "snap-10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 
 # colors
 # class                 border  backgr. text    indicator
@@ -147,17 +153,17 @@ client.urgent           #900000 #900000 #ffffff #900000
 # finds out, if available)
 bar {
   position top
-    status_command i3status-conky
+  status_command i3status-conky
 
-    colors {
-      background         #101010
-        statusline         #605c5a
-        separator          #101010
-        focused_workspace  #101010 #101010 #825969
-        active_workspace   #5f5f5f #101010 #101010
-        inactive_workspace #101010 #101010 #5f5f5f
-        urgent_workspace   #2e3436 #9a878f
-    }
+  colors {
+    background         #101010
+    statusline         #605c5a
+    separator          #101010
+    focused_workspace  #101010 #101010 #825969
+    active_workspace   #5f5f5f #101010 #101010
+    inactive_workspace #101010 #101010 #5f5f5f
+    urgent_workspace   #2e3436 #9a878f
+  }
 }
 
 for_window [class="plugin-container"] floating enable
