@@ -10,6 +10,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'jnurmine/Zenburn'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/nerdtree'
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install (update) bundles
@@ -127,3 +128,9 @@ filetype indent plugin on
 
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+" NERDTree - automatically on startup, Ctrl-n open/close
+autocmd vimenter * NERDTree
+autocmd vimenter * if !argc() | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists(b:NERDTreeType) && b:NERDTreeType == "primary") | q | endif
