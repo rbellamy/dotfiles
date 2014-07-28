@@ -78,8 +78,11 @@ esac
 # }}}
 
 # prompt {{{
-zstyle ':vcs_info:*' enable git hg
-zstyle ':vcs_info:*' formats "%F{green}%b%f "
+#zstyle ':vcs_info:*+*:*' debug true
+zstyle ':vcs_info:*:prompt-rbellamy:*' enable git hg
+zstyle ':vcs_info:*:prompt-rbellamy:*' actionformats '%b %a'
+zstyle ':vcs_info:*:prompt-rbellamy:*' formats '%b'
+zstyle ':prompt:rbellamy:vcs:*' whitelist-dirs ~/Development(N:A) ~/.config(N:A) ~/.local(N:A)
 # initialize vimode (stops linux console glitch)
 vimode=i
 # set vimode to current editing mode
@@ -99,9 +102,11 @@ zle -N zle-keymap-select
 # %~       : current working directory, if $HOME then ~
 # %f       : reset foreground color to default
 if $isroot; then
-  PROMPT='%K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%b%f ${vcs_info_msg_0_}%B%F{white}%# %b%f'
+  PROMPT='%B%F{white}%D{%Y-%m-%d %T}
+%K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%b%f %F{green}%3v%f%B%F{white} %# %b%f'
 else
-  PROMPT='%K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%b%f ${vcs_info_msg_0_}%B%F{white}%# %b%f'
+  PROMPT='%B%F{white}%D{%Y-%m-%d %T}
+%K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%b%f %F{green}%3v%f%B%F{white} %# %b%f'
 fi
 # }}}
 
@@ -206,7 +211,31 @@ fi
 
 precmd() {
   update_title
-  vcs_info
+
+  local vcs_info_msg_{0..1}_
+  local -a whitelist_dirs
+  local -a pwdsplit
+  local dir
+  local abort=1
+
+  psvar[3]=('')
+  psvar[4]=('')
+
+  zstyle -a ':prompt:rbellamy:vcs:' whitelist-dirs whitelist_dirs
+  if [[ -z ${whitelist_dirs} || ${_SHOWGITSTUFF} == 1 ]]; then
+    abort=0
+  else
+    for dir in ${(s:/:)PWD}; do
+      pwdsplit+=($pwdsplit[-1]/$dir)
+    done
+    [[ -n ${pwdsplit:*whitelist_dirs} ]] && abort=0
+  fi
+
+  [[ ${abort} == 1 ]] && return 0
+
+  vcs_info prompt-rbellamy
+  psvar[3]=${vcs_info_msg_0_}
+  psvar[4]=${vcs_info_msg_1_}
 }
 
 # history search - returns historical commands like
