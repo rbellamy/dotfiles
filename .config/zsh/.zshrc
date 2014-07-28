@@ -102,11 +102,11 @@ zle -N zle-keymap-select
 # %~       : current working directory, if $HOME then ~
 # %f       : reset foreground color to default
 if $isroot; then
-  PROMPT='%B%F{white}%D{%Y-%m-%d %T}
-%K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%b%f %F{green}%3v%f%B%F{white} %# %b%f'
+  PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u
+%K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white} %# %f%b'
 else
-  PROMPT='%B%F{white}%D{%Y-%m-%d %T}
-%K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%b%f %F{green}%3v%f%B%F{white} %# %b%f'
+  PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u
+%K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white} %# %f%b'
 fi
 # }}}
 
