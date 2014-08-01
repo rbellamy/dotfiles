@@ -80,8 +80,8 @@ esac
 # prompt {{{
 #zstyle ':vcs_info:*+*:*' debug true
 zstyle ':vcs_info:*:prompt-rbellamy:*' enable git hg
-zstyle ':vcs_info:*:prompt-rbellamy:*' actionformats '%b %a'
-zstyle ':vcs_info:*:prompt-rbellamy:*' formats '%b'
+zstyle ':vcs_info:*:prompt-rbellamy:*' actionformats '%b %a '
+zstyle ':vcs_info:*:prompt-rbellamy:*' formats '%b '
 zstyle ':prompt:rbellamy:vcs:*' whitelist-dirs ~/Development(N:A) ~/.config(N:A) ~/.local(N:A)
 # initialize vimode (stops linux console glitch)
 vimode=i
@@ -103,10 +103,10 @@ zle -N zle-keymap-select
 # %f       : reset foreground color to default
 if $isroot; then
   PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u
-%K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white} %# %f%b'
+%K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white}%# %f%b'
 else
   PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u
-%K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white} %# %f%b'
+%K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white}%# %f%b'
 fi
 # }}}
 
