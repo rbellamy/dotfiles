@@ -9,8 +9,9 @@ have() { which $1 &>/dev/null || return 1 }
 # }}}
 
 # modules {{{
-autoload -U compinit edit-command-line vcs_info zmv
+autoload -U compinit edit-command-line vcs_info zmv bashcompinit
 compinit
+bashcompinit
 zle -N edit-command-line
 zmodload zsh/complist
 # }}}
