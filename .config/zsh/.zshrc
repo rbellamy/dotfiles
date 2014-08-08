@@ -194,6 +194,11 @@ case "$TERM" in
     ;;
 esac
 
+# show_mod_parameters {{{
+#
+autoload show_mod_parameter_info
+# }}}
+
 # spectrum {{{
 # And now that we've got our terminal sorted out - grabulating a
 # 256 color terminal if at all possible, we can do that spectrum thang!
