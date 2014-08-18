@@ -12,7 +12,7 @@ Bundle 'jnurmine/Zenburn'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'Lokaltog/powerline'
+"Bundle 'Lokaltog/powerline'
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install (update) bundles
@@ -139,15 +139,16 @@ else
   let g:nerdtree_tabs_open_on_console_startup = 1
 endif
 
-" powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:Powerline_symbols = "fancy"
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
+" powerline - gonna try this with an AUR package, since this
+"             plugin is so gnarly and complex
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+"let g:Powerline_symbols = "fancy"
+"if ! has('gui_running')
+"  set ttimeoutlen=10
+"  augroup FastEscape
+"    autocmd!
+"    au InsertEnter * set timeoutlen=0
+"    au InsertLeave * set timeoutlen=1000
+"  augroup END
+"endif

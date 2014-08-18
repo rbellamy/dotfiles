@@ -67,6 +67,8 @@ export NCURSES_NO_UTF8_ACS=1
 # colors
 eval $(dircolors -b ~/.config/dircolors-solarized/dircolors.256dark)
 
+[[ -d /opt/maven ]] && export M2_HOME=/opt/maven
+
 # rvm - single user mode
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
