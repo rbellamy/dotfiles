@@ -249,9 +249,9 @@ precmd() {
 # history search - returns historical commands like
 h() {
   if [ -z "$*" ]; then
-    history 1;
+    history -E 1;
   else
-    history 1 | egrep "$@";
+    history -E 1 | egrep "$@";
   fi
 }
 
