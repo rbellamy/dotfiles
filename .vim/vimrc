@@ -75,6 +75,9 @@ set ignorecase
 set smartcase
 set wrapscan
 
+" Be able to see whitespace
+set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\
+
 let mapleader = ","
 
 " F4 toggles paste mode
@@ -88,39 +91,39 @@ nn <F6> :setlocal spell! spell?<CR>
 "endif
 
 if has ('gui_running')
-    " autoselect, console dialogs, don't source menu.vim
-    set guioptions=acM
-    set mousefocus
-    set guifont=Monospace\ 9
-    autocmd GUIEnter * set t_vb=
-    map <S-Insert> <MiddleMouse>
-    map! <S-Insert> <MiddleMouse>
+  " autoselect, console dialogs, don't source menu.vim
+  set guioptions=acM
+  set mousefocus
+  set guifont=Monospace\ 9
+  autocmd GUIEnter * set t_vb=
+  map <S-Insert> <MiddleMouse>
+  map! <S-Insert> <MiddleMouse>
 endif
 
 " colors
 set background=dark
 
 if has ('gui_running') || &t_Co > 255
-    colorscheme solarized
-    let g:solarized_termcolors = 256
-    set cursorline
-    let g:Powerline_symbols = 'fancy'
-    let g:Powerline_colorscheme = 'solarized'
+  colorscheme solarized
+  let g:solarized_termcolors = 256
+  set cursorline
+  let g:Powerline_symbols = 'fancy'
+  let g:Powerline_colorscheme = 'solarized'
 endif
 
 if has ('gui_running') == 0 && &t_Co > 255
-     let g:solarized_termtrans = 1
+  let g:solarized_termtrans = 1
 endif
 
 if has ('gui_running') || &t_Co > 2
-    syntax on
-    " highlight trailing whitespace, except when typing at eol
-    highlight ExtraWhitespace ctermbg=darkred guibg=darkred
-    match ExtraWhitespace /\s\+$/
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
+  syntax on
+  " highlight trailing whitespace, except when typing at eol
+  highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+  match ExtraWhitespace /\s\+$/
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
 endif
 
 let g:no_rust_conceal = 1
