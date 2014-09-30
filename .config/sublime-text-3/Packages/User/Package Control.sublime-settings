@@ -4,7 +4,9 @@
 		"Highlight",
 		"JSON Reindent",
 		"JSONLint",
+		"Oracle PL SQL",
 		"Pretty JSON",
-		"SFTP"
+		"SFTP",
+		"SublimeSBT"
 	]
 }
