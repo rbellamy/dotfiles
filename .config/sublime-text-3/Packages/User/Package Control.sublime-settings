@@ -1,12 +1,15 @@
 {
 	"installed_packages":
 	[
+		"AutoWrap",
+		"CodeFormatter",
 		"Highlight",
 		"JSON Reindent",
 		"JSONLint",
 		"Oracle PL SQL",
 		"Pretty JSON",
 		"SFTP",
-		"SublimeSBT"
+		"SublimeSBT",
+		"SublimeGit"
 	]
 }
