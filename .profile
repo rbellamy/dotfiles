@@ -5,7 +5,6 @@ umask 077
 
 # constant environment variables
 export PATH="$HOME"/.local/bin:$PATH
-[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # JAVA_OPTIONS
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
@@ -31,7 +30,7 @@ export GIMP2_DIRECTORY="$XDG_CONFIG_HOME"/gimp
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
 
-export XAUTHORITY="$XDG_RUNTIME_DIR"/X11-authority
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/X11-authority
 
 # default editor - visual and terminal
 export EDITOR=vim
@@ -69,8 +68,3 @@ export NCURSES_NO_UTF8_ACS=1
 eval $(dircolors -b ~/.config/dircolors-solarized/dircolors.256dark)
 
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
-
-# rvm - single user mode
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
