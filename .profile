@@ -1,8 +1,5 @@
 # ~/.profile
 
-# set a secure mask
-umask 077
-
 # constant environment variables
 export PATH="$HOME"/.local/bin:$PATH
 

@@ -2,6 +2,6 @@
 
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}" ]] && xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/Xresources
 
-#exec gnome-shell
+exec gnome-shell
 # start i3 with logging
-exec i3 -V >> "${XDG_CACHE_HOME}"/i3.log 2>&1
+#exec i3 -V >> "${XDG_CACHE_HOME}"/i3.log 2>&1
