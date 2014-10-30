@@ -5,6 +5,7 @@ export PATH="$HOME"/.local/bin:$PATH
 
 # JAVA_OPTIONS
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export JAVA_HOME=/usr/lib/jvm/default-runtime
 
 # manpage colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
