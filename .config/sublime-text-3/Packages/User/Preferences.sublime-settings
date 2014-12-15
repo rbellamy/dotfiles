@@ -4,8 +4,22 @@
 	"font_size": 11,
 	"ignored_packages":
 	[
+		"Batch File",
+		"CSS",
+		"SublimeSBT",
+		"ASP",
+		"AutoWrap",
+		"ActionScript",
 		"Vintage",
-		"SublimeSBT"
+		"CodeFormatter",
+		"C++",
+		"C#",
+		"AppleScript",
+		"Clojure",
+		"SublimeGit",
+		"ScalaWorksheet",
+		"SFTP",
+		"ScalaFormat"
 	],
 	"save_on_focus_lost": true,
 	"tab_size": 2,

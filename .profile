@@ -4,7 +4,7 @@
 export PATH="$HOME"/.local/bin:$PATH
 
 # JAVA_OPTIONS
-#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export JAVA_HOME=/usr/lib/jvm/default
 
 # manpage colors in less
@@ -51,8 +51,6 @@ if [[ -n $DISPLAY ]]; then
 fi
 #export TERMINAL=termite
 
-# colored grep
-export GREP_OPTIONS=--color=auto
 # correct colored less - use ANSI-only raw control characters
 export LESS=-R
 
