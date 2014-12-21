@@ -237,7 +237,7 @@ precmd() {
     for dir in ${(s:/:)PWD}; do
       pwdsplit+=($pwdsplit[-1]/$dir)
     done
-    [[ -n ${pwdsplit:*whitelist_dirs} ]] && abort=0
+    #[[ -n ${pwdsplit:*whitelist_dirs} ]] && abort=0
   fi
 
   [[ ${abort} == 1 ]] && return 0
