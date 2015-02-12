@@ -27,6 +27,7 @@ export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GIMP2_DIRECTORY="$XDG_CONFIG_HOME"/gimp
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
+export ATOM_HOME="$XDG_CONFIG_HOME"/atom
 
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/X11-authority
 
