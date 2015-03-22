@@ -1,29 +1,69 @@
-"~/.vim/vimrc
+"~/.config/vim/vimrc
+set nocompatible
+
+" XDG Environment For VIM
+" =======================
+"
+" References
+" ----------
+"
+" - http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
+" - http://tlvince.com/vim-respect-xdg
+"
+" Instructions
+" ------------
+"
+" The following two (2) directories must exist if you want VIM to actually
+" use them, e.g. `mkdir $XDG_CACHE_HOME/vim $XDG_CONFIG_HOME/vim` or
+" `mkdir $HOME/.cache/vim $HOME/.config`.
+"
+" - $XDG_CACHE_HOME/vim
+" - $XDG_CONFIG_HOME/vim
+
+if empty($XDG_CACHE_HOME)
+    let $XDG_CACHE_HOME="$HOME/.cache"
+endif
+if empty($XDG_CONFIG_HOME)
+    let $XDG_CONFIG_HOME="$HOME/.config"
+endif
+set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
+set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
+set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 filetype off " required for vundle
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " let vundle manage vundle
 " required
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 Bundle 'jnurmine/Zenburn'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'Lokaltog/powerline'
+
+" All vundle plugins must be added before the following line
+call vundle#end()" Brief help
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
+" Put your non-Plugin stuff after this line
 
 " general
-set nocompatible
 set spelllang=en_us
 set history=10000
 set backspace=indent,eol,start
@@ -41,13 +81,6 @@ set noerrorbells visualbell t_vb=
 set wrap linebreak
 " disable welcome screen and use short messages
 set shortmess=atToOI
-
-" set directories
-set undodir=~/.cache/vim/undo
-set directory=~/.cache/vim/swap
-set backupdir=~/.cache/vim/backup
-set viminfo+=n~/.cache/vim/viminfo
-
 " % matches on if/else, tags, etc.
 runtime macros/matchit.vim
 

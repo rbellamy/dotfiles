@@ -405,9 +405,9 @@ bindkey -M vicmd   '^Z'               fancy-ctrl-z
 # }}}
 
 # directory setup {{{
-[ ! -d ~/.cache/vim/swap ] && mkdir ~/.cache/vim/swap
-[ ! -d ~/.cache/vim/backup ] && mkdir ~/.cache/vim/backup
-[ ! -d ~/.cache/vim/undo ] && mkdir ~/.cache/vim/undo
+[ ! -d "$XDG_CACHE_HOME"/vim/swap ] && mkdir "$XDG_CACHE_HOME"/vim/swap
+[ ! -d "$XDG_CACHE_HOME"/vim/backup ] && mkdir "$XDG_CACHE_HOME"/vim/backup
+[ ! -d "$XDG_CACHE_HOME"/vim/undo ] && mkdir "$XDG_CACHE_HOME"/vim/undo
 # }}}
 
 # cleanup {{{
