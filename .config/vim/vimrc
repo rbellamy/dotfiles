@@ -41,12 +41,12 @@ call vundle#begin()
 
 " let vundle manage vundle
 " required
-Bundle 'gmarik/Vundle.vim'
-Bundle 'jnurmine/Zenburn'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-"Bundle 'Lokaltog/powerline'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'Lokaltog/powerline'
 
 " All vundle plugins must be added before the following line
 call vundle#end()" Brief help
