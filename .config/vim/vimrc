@@ -36,8 +36,8 @@ let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 filetype off " required for vundle
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+set rtp+=$XDG_CONFIG_HOME/vim/bundle/Vundle.vim
+call vundle#begin("$XDG_CONFIG_HOME/vim/bundle")
 
 " let vundle manage vundle
 " required
@@ -46,6 +46,7 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'bling/vim-airline'
 "Plugin 'Lokaltog/powerline'
 
 " All vundle plugins must be added before the following line
@@ -188,3 +189,6 @@ endif
 "    au InsertLeave * set timeoutlen=1000
 "  augroup END
 "endif
+
+" airline
+set laststatus=2
