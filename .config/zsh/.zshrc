@@ -408,6 +408,7 @@ bindkey -M vicmd   '^Z'               fancy-ctrl-z
 [ ! -d "$XDG_CACHE_HOME"/vim/swap ] && mkdir "$XDG_CACHE_HOME"/vim/swap
 [ ! -d "$XDG_CACHE_HOME"/vim/backup ] && mkdir "$XDG_CACHE_HOME"/vim/backup
 [ ! -d "$XDG_CACHE_HOME"/vim/undo ] && mkdir "$XDG_CACHE_HOME"/vim/undo
+[ ! -d "$XDG_CONFIG_HOME"/vim/bundle ] && mkdir "$XDG_CONFIG_HOME"/vim/bundle
 # }}}
 
 # cleanup {{{
