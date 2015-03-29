@@ -1,6 +1,6 @@
-[submodule "vundle"]
-  path = .vim/bundle/vundle
-  url = https://github.com/gmarik/vundle.git
 [submodule "dircolors-solarized"]
   path = .config/dircolors-solarized
   url = https://github.com/seebi/dircolors-solarized.git
+[submodule "vundle"]
+	path = .config/vim/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git

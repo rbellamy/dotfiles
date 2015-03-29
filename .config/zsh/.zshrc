@@ -146,6 +146,7 @@ alias sprunge="curl -F 'sprunge=<-' sprunge.us"
 alias grep="grep --color=auto"
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
+have apacman && alias apacman="apacman --noedit --noconfirm"
 
 # vim
 alias vim='vim -p'
@@ -405,9 +406,10 @@ bindkey -M vicmd   '^Z'               fancy-ctrl-z
 # }}}
 
 # directory setup {{{
-[ ! -d ~/.cache/vim/swap ] && mkdir ~/.cache/vim/swap
-[ ! -d ~/.cache/vim/backup ] && mkdir ~/.cache/vim/backup
-[ ! -d ~/.cache/vim/undo ] && mkdir ~/.cache/vim/undo
+[ ! -d "$XDG_CACHE_HOME"/vim/swap ] && mkdir "$XDG_CACHE_HOME"/vim/swap
+[ ! -d "$XDG_CACHE_HOME"/vim/backup ] && mkdir "$XDG_CACHE_HOME"/vim/backup
+[ ! -d "$XDG_CACHE_HOME"/vim/undo ] && mkdir "$XDG_CACHE_HOME"/vim/undo
+[ ! -d "$XDG_CONFIG_HOME"/vim/bundle ] && mkdir "$XDG_CONFIG_HOME"/vim/bundle
 # }}}
 
 # cleanup {{{
