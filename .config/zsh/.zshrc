@@ -146,6 +146,7 @@ alias sprunge="curl -F 'sprunge=<-' sprunge.us"
 alias grep="grep --color=auto"
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
+have apacman && alias apacman="apacman --noedit --noconfirm"
 
 # vim
 alias vim='vim -p'
