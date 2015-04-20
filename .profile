@@ -32,6 +32,13 @@ export ATOM_HOME="$XDG_CONFIG_HOME"/atom
 # Set vimrc's location and source it on vim startup
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
+# R environment stuffs
+export R_CONFIG_HOME="$XDG_CONFIG_HOME"/R
+export R_PROFILE_USER="$R_CONFIG_HOME"/RProfile
+export R_LIBS_USER="$R_CONFIG_HOME"/libs_%v
+export R_LIBS_USER_DEV="$R_CONFIG_HOME"/libs_dev
+export R_HISTFILE="$R_CONFIG_HOME"/RHistory
+
 # default editor - visual and terminal
 export EDITOR=vim
 export VISUAL=vim

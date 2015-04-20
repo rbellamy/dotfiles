@@ -1,0 +1,181 @@
+## found and tweaked from
+## http://www.r-bloggers.com/fun-with-rprofile-and-customizing-r-startup/
+## http://kevinushey.github.io/blog/2015/02/02/rprofile-essentials/
+
+## set a local CRAN mirror
+local({r <- getOption("repos")
+      r["CRAN"] <- "http://cran.rstudio.com"
+      options(repos=r)})
+
+if (!file.exists(Sys.getenv("R_LIBS_USER"))) {
+  dir.create(Sys.getenv("R_LIBS_USER"), recursive=TRUE)
+}
+
+if (!Sys.getenv("R_LIBS_USER") %in% .libPaths()) {
+  .libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))
+}
+
+options(
+  max.print              = 100,                           # don't let R blow up the console
+  digits.secs            = 3,                             # show sub-second timestamps
+  scipen                 = 10,                            # try to never use scientific notation
+  editor                 = "vim",                         # yes, please, the editor should be vim
+  menu.graphics          = FALSE,                         # I'd rather not use Tk for menus
+  prompt                 = "R>",                          # um, the prompt
+  continue               = "... ",                        # continuation more like python
+  width                  = 160,                           # screen width
+#  warnPartialMatchAttr   = TRUE,                          # warn
+#  warnPartialMatchDollar = TRUE,                          # on partial
+#  warnPartialMatchArgs   = TRUE,                          # matches
+#  warn                   = 2,                             # warnings as errors
+  useFancyQuotes         = FALSE,                         # fancy quotes are annoying and buggy
+  browserNLdisabled      = TRUE,                          # ignore newlines when "browse()"ing
+  deparse.max.lines      = 2,                             # minimal output from "traceback()"
+  devtools.name          = "G. Richard Bellamy",          # my name?
+  devtools.path          = Sys.getenv("R_LIBS_USER_DEV"), # libs path for "dev_mode()"
+  devtools.desc          = list (
+    Author               = "G. Richard Bellamy",          # Author name
+    Maintainer           = "G. Richard Bellamy",          # same same
+    License              = "MIT + file LICENSE",          # need to license my shti, yo
+    VignetteBuilder      = "knitr"
+  )
+)
+
+## don't ask me to save before quitting
+q <- function (save="no", ...) {
+  quit(save=save, ...)
+}
+
+## let me tab-complete within library() or require() calls
+utils::rc.settings(ipck=TRUE)
+
+## customize the X11 defaults
+setHook(packageEvent("grDevices", "onLoad"),
+        function(...) grDevices::X11.options(width=8,
+                                             height=8,
+                                             xpos=0,
+                                             pointsize=12))
+                                             #type=""))      # Cairo device
+                                             #type="cairo")) # other Cairo dev
+                                             #type="xlib"))  # old default
+
+## load a library without warning or startup messages
+sshhh <- function(a.package){
+  suppressWarnings(suppressPackageStartupMessages(
+    library(a.package, character.only=TRUE)))
+}
+
+## yeah, these libraries?
+auto.loads <- c("dplyr", "ggplot2", "devtools")
+
+## use auto.loads if we're interactive
+if(interactive()){
+  invisible(sapply(auto.loads, sshhh))
+}
+
+## see color output
+if(Sys.getenv("TERM") %in% c("xterm-256color","putty-256color")) {
+  sapply(c("colorout"), sshhh)
+}
+
+## create a new, hidden namespace to store our functions in
+## this helps them survive a call to "rm(list=ls())"
+.env <- new.env()
+
+## Returns a logical vector TRUE for elements of X not in Y
+.env$"%nin%" <- function(x, y) !(x %in% y)
+
+## Returns names(df) in single column, numbered matrix format.
+.env$n <- function(df) matrix(names(df))
+
+## Single character shortcuts for summary() and head().
+.env$s <- base::summary
+.env$h <- utils::head
+
+## ht==headtail, i.e., show the first and last 10 items of an object
+.env$ht <- function(d) rbind(head(d,10),tail(d,10))
+
+## Show the first 5 rows and first 5 columns of a data frame or matrix
+.env$hh <- function(d) if(class(d)=="matrix"|class(d)=="data.frame") d[1:5,1:5]
+
+## Read data on clipboard.
+.env$read.cb <- function(...) {
+ismac <- Sys.info()[1]=="Darwin"
+  if (!ismac) {
+    read.table(file="clipboard", ...)
+  } else {
+    read.table(pipe("pbpaste"), ...)
+  }
+}
+
+## Strip row names from a data frame (stolen from plyr)
+.env$unrowname <- function(x) {
+  rownames(x) <- NULL
+  x
+}
+
+## function to undo a factor() call
+.env$unfactor <- function(df){
+  id <- sapply(df, is.factor)
+  df[id] <- lapply(df[id], as.character)
+  df
+}
+
+## List objects and classes (from @_inundata, mod by ateucher)
+.env$lsa <- function() {
+  obj_type <- function(x) class(get(x, envir = .GlobalEnv)) # define environment
+    foo = data.frame(sapply(ls(envir = .GlobalEnv), obj_type))
+    foo$object_name = rownames(foo)
+    names(foo)[1] = "class"
+    names(foo)[2] = "object"
+    return(unrowname(foo))
+}
+
+## List all functions in a package (also from @_inundata)
+.env$lsp <-function(package, all.names = FALSE, pattern) {
+  package <- deparse(substitute(package))
+    ls(
+       pos = paste("package", package, sep = ":"),
+       all.names = all.names,
+       pattern = pattern
+    )
+}
+
+.env$o <- function(...) {
+  if(Sys.info()[1]=="Linux") system("xdg-open .")
+  if(Sys.info()[1]=="Darwin") system("open .")
+}
+## now let's attach that environment
+attach(.env)
+
+## FIRST
+## echo a timestamp to the console and the history file
+.First <- function() {
+  if(interactive()){
+    library(utils)
+      timestamp(,prefix=paste("##------ [",getwd(),"] ",sep=""))
+  }
+}
+
+## LAST
+## make sure to write commands to the history file
+.Last <- function(){
+  if(interactive()){
+    hist_file <- Sys.getenv("R_HISTFILE")
+      if(hist_file=="") hist_file <- "~.config/R/RHistory"
+        savehistory(hist_file)
+  }
+}
+
+## print the library paths used by this session
+if (length(.libPaths()) > 1) {
+  msg <- "Using libraries at paths:\n"
+} else {
+  msg <- "Using library at path:\n"
+}
+libs <- paste("-", .libPaths(), collapse = "\n")
+message(msg, libs, sep = "")
+
+## welcome message
+message("n*** Successfully loaded .Rprofile ***n")
+
