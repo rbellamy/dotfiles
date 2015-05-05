@@ -1,0 +1,113 @@
+secrets: secrets.yml
+templates:
+  # filter
+  reg_reject:
+    regexp:
+      reject:
+        - FASTSUB
+        - VOSTFR
+        - Subtitulado
+        - Spanish
+        - French
+        - RUS
+        - ESP
+    content_filter:
+      reject:
+        - '*.rar'
+        - '*.zip'
+        - '*.avi'
+  # output
+  transmission_rpc:
+    transmission:
+      host: localhost
+      port: 9091
+      username: {{ secrets.kodi.username }}
+      password: {{ secrets.kodi.password }}
+    clean_transmission:
+      host: localhost
+      port: 9091
+      username: {{ secrets.kodi.username }}
+      password: {{ secrets.kodi.password }}
+      finished_for: 2 days
+      min_ratio: 1
+tasks:
+  Get television:
+    priority: 1
+    template:
+      - reg_reject
+      - transmission_rpc
+    # input
+    configure_series:
+      from:
+        trakt_list:
+          username: {{ secrets.trakt.username }}
+          password: {{ secrets.trakt.password }}
+          list: Following
+          type: shows
+      settings:
+        identified_by: ep
+        timeframe: 3 days
+        target: 720p hdtv+
+        quality: hdtv <720p
+    discover:
+      what:
+        - emit_series:
+            from_start: yes
+      from:
+        - kat:
+            category: tv
+            verified: yes
+        - torrentz: verified
+        - piratebay: yes
+    # filter
+    torrent_alive: 5
+    exists_series:
+      - /var/lib/kodi/media/TV/
+      - /var/lib/kodi/media/Downloads/
+    # output
+    transmission:
+      path: /var/lib/kodi/media/TV/{{series_name}}/S{{"%02d"|format(series_season)}}
+
+  Fill movie queue:
+    priority: 2
+    interval: 1 day
+    # input
+    trakt_list:
+      username: {{ secrets.trakt.username }}
+      password: {{ secrets.trakt.password }}
+      list: watchlist
+      type: movies
+    # filter
+    seen: local                    # We don't want accepted movies on this feed to affect actual download feed
+    accept_all: yes
+    imdb_lookup: yes
+    # output
+    movie_queue:
+      action: add
+      quality: 720p+ bluray
+
+  Get movies:
+    priority: 3
+    template:
+      - reg_reject
+      - transmission_rpc
+    # input
+    discover:
+      what:
+        - emit_movie_queue: yes
+      from:
+        - piratebay: yes
+        - kat:
+            verified: yes
+        - torrentz: verified
+    # filter
+    seen_movies: strict
+    content_size:
+      max: 20000
+      min: 4000
+    torrent_alive: 5
+    exists_movie:
+      - /var/lib/kodi/media/Movies/
+    # output
+    transmission:
+      path: /var/lib/kodi/media/Movies
