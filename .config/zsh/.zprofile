@@ -1,7 +1,7 @@
 # ~/.config/zsh/.zprofile
 
 # sane UMASK
-umask 077
+umask 007
 
 emulate sh
 . ~/.profile
