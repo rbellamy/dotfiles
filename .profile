@@ -26,10 +26,14 @@ export MPV_HOME="$XDG_CONFIG_HOME"/mpv
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GIMP2_DIRECTORY="$XDG_CONFIG_HOME"/gimp
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
 export ATOM_HOME="$XDG_CONFIG_HOME"/atom
+export VAGRANT_HOME="$XDG_CONFIG_HOME"/vagrant
+
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/X11-authority
+
 # Set vimrc's location and source it on vim startup
+# Based on XDG_CONFIG_HOME
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # R environment stuffs
