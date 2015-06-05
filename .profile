@@ -73,7 +73,4 @@ export SDL_AUDIODRIVER=pulse
 # draw lines whether in UTF8 or not
 export NCURSES_NO_UTF8_ACS=1
 
-# colors
-eval $(dircolors -b ~/.config/dircolors-solarized/dircolors.256dark)
-
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven

@@ -55,8 +55,17 @@ DIRSTACKSIZE=20
 # completion style {{{
 # menu completion
 zstyle ':completion:*' menu select
-# colors for file completion
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# colors
+if whence dircolors >/dev/null; then
+  eval $(dircolors -b ~/.config/dircolors-solarized/dircolors.256dark)
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+  alias ls='ls -Ah --color=auto'
+else
+  export CLICOLOR=1
+  zstyle ':completion:*:default' list-colors ''
+fi
+
 # complete all processes
 zstyle ':completion:*:processes' command 'ps -e'
 zstyle ':completion:*:processes-names' command 'ps -eo comm'
@@ -116,7 +125,6 @@ fi
 alias ...='cd ../..'
 alias ....='cd ../../..'
 have colordiff && alias diff=colordiff
-alias ls='ls -Ah --color=auto'
 alias df='df -h'
 alias du='du -h'
 alias free='free -m'
