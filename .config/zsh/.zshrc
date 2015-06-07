@@ -57,13 +57,14 @@ DIRSTACKSIZE=20
 zstyle ':completion:*' menu select
 
 # colors
-if whence dircolors >/dev/null; then
+if have dircolors; then
   eval $(dircolors -b ~/.config/dircolors-solarized/dircolors.256dark)
   zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
   alias ls='ls -Ah --color=auto'
-else
+elif [ "$PLATFORM" = Darwin ]; then
   export CLICOLOR=1
   zstyle ':completion:*:default' list-colors ''
+  alias ls='ls -G'
 fi
 
 # complete all processes
@@ -129,15 +130,24 @@ alias df='df -h'
 alias du='du -h'
 alias free='free -m'
 alias cp='cp -iv'
+alias grep="grep --color=auto"
 alias mv='mv -iv'
-alias rm='rm -Iv'
 alias ln='ln -iv'
 alias install='install -v'
 alias mount='mount -v'
 alias umount='umount -v'
-alias chown='chown -c --preserve-root'
-alias chmod='chmod -c --preserve-root'
-alias chgrp='chgrp -c --preserve-root'
+if [[ "$PLATFORM" == "Linux" ]]; then
+  alias chown='chown -c --preserve-root'
+  alias chmod='chmod -c --preserve-root'
+  alias chgrp='chgrp -c --preserve-root'
+  alias rm='rm -Iv'
+elif [[ "$PLATFORM" == "Darwin" ]]; then
+  alias chown='chown -v'
+  alias chmod='chmod -v'
+  alias chgrp='chgrp -v'
+  alias rm='rm -iv'
+fi
+
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -vp'
 alias cling='cling --nologo -std=c++11'
@@ -151,7 +161,6 @@ alias dirs='dirs -p'
 alias weechat-curses='dtach -A $XDG_RUNTIME_DIR/weechat weechat-curses'
 alias mutt='dtach -A $XDG_RUNTIME_DIR/mutt mutt -F ~/.config/mutt/muttrc'
 alias sprunge="curl -F 'sprunge=<-' sprunge.us"
-alias grep="grep --color=auto"
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
 have apacman && alias apacman="apacman --noedit --noconfirm"

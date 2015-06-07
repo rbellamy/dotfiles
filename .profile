@@ -3,6 +3,7 @@
 
 # constant environment variables
 export PATH="$HOME"/.local/bin:$PATH
+export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
