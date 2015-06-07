@@ -1,4 +1,5 @@
 # ~/.profile
+(( UID == 0 )) && umask=0022 || umask=0027
 
 # constant environment variables
 export PATH="$HOME"/.local/bin:$PATH
