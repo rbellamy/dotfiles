@@ -7,7 +7,8 @@ export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export JAVA_HOME=/usr/lib/jvm/default
+[[ "$PLATFORM" == "Darwin" ]] && JHOME=$(/usr/libexec/java_home) || JHOME=/usr/lib/jvm/default
+export JAVA_HOME="$JHOME"
 
 # manpage colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -59,7 +60,7 @@ export GZIP=-9 \
   XZ_OPT=-9
 
 # browser depends on terminal or X
-if [[ -n $DISPLAY ]]; then
+if [[ -n $DISPLAY ]] || [[ "$PLATFORM" == "Darwin" ]]; then
   export BROWSER=chrome
 else
   export BROWSER=elinks
