@@ -1,5 +1,9 @@
 # update the function path {{{
-fpath=(~/.config/zsh/functions $fpath)
+if [[ -d "/usr/local/share/zsh-completions" ]] then
+  fpath=(~/.config/zsh/functions "/usr/local/share/zsh-completions" $fpath)
+else
+  fpath=(~/.config/zsh/functions $fpath)
+fi
 # }}}
 
 # checks {{{
