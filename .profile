@@ -8,7 +8,7 @@ export PLATFORM=$(uname -s)
 # JAVA_OPTIONS
 [[ "$PLATFORM" == "Darwin" ]] && JHOME=$(/usr/libexec/java_home) || JHOME=/usr/lib/jvm/default
 export JAVA_HOME="$JHOME"
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
 # manpage colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
