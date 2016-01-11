@@ -13,11 +13,16 @@ have() { which $1 &>/dev/null || return 1 }
 # }}}
 
 # modules {{{
-autoload -U compinit edit-command-line vcs_info zmv bashcompinit
+autoload -Uz compinit edit-command-line vcs_info zmv bashcompinit
 compinit
 bashcompinit
 zle -N edit-command-line
 zmodload zsh/complist
+# }}}
+
+# completions {{{
+# Because .profile/.zprofile are loaded BEFORE .zshrc
+[[ -r "/usr/local/share/zsh/site-functions/_aws" ]] && source "/usr/local/share/zsh/site-functions/_aws"
 # }}}
 
 # shell options {{{

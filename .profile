@@ -37,7 +37,8 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
 
 # Set vimrc's location and source it on vim startup
 # Based on XDG_CONFIG_HOME
-export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+#export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
 
 # R environment stuffs
 export R_CONFIG_HOME="$XDG_CONFIG_HOME"/R
