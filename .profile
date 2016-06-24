@@ -8,6 +8,8 @@ export PLATFORM=$(uname -s)
 # JAVA_OPTIONS
 [[ "$PLATFORM" == "Darwin" ]] && JHOME=$(/usr/libexec/java_home) || JHOME=/usr/lib/jvm/default
 export JAVA_HOME="$JHOME"
+# IntelliJ IDEA JDK
+[[ "$PLATFORM" == "Linux" ]] && export IDEA_JDK="/usr/lib/jvm/java-8-openjdk"
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
 # manpage colors in less
@@ -54,11 +56,6 @@ export VISUAL=vim
 # less is more
 export PAGER=less
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshist
-
-# highest compression
-export GZIP=-9 \
-  BZIP=-9 \
-  XZ_OPT=-9
 
 # browser depends on terminal or X
 if [[ -n $DISPLAY ]] || [[ "$PLATFORM" == "Darwin" ]]; then
