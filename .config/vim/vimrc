@@ -49,6 +49,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'derekwyatt/vim-scala'
 "Plugin 'Lokaltog/powerline'
 
 " All vundle plugins must be added before the following line
