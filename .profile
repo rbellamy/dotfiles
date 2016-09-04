@@ -8,6 +8,8 @@ export PLATFORM=$(uname -s)
 # JAVA_OPTIONS
 [[ "$PLATFORM" == "Darwin" ]] && JHOME=$(/usr/libexec/java_home) || JHOME=/usr/lib/jvm/default
 export JAVA_HOME="$JHOME"
+# IntelliJ IDEA JDK
+[[ "$PLATFORM" == "Linux" ]] && export IDEA_JDK="/usr/lib/jvm/java-8-openjdk"
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
 # manpage colors in less
@@ -55,11 +57,6 @@ export VISUAL=vim
 export PAGER=less
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshist
 
-# highest compression
-export GZIP=-9 \
-  BZIP=-9 \
-  XZ_OPT=-9
-
 # browser depends on terminal or X
 if [[ -n $DISPLAY ]] || [[ "$PLATFORM" == "Darwin" ]]; then
   export BROWSER=chrome
@@ -80,3 +77,7 @@ export NCURSES_NO_UTF8_ACS=1
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.3.3/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.3.3/libexec
 [[ -f /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh ]] && source /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
