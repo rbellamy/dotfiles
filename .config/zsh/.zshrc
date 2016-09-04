@@ -174,7 +174,7 @@ have hub && alias git=hub
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
 have apacman && alias apacman="apacman --noedit --noconfirm"
-have sbt && alias sbt="sbt -sbt-launch-repo https://nexus.terradatum.com/content/groups/sbt-ivy"
+have sbt && alias sbt -sbt-launch-repo https://nexus.terradatum.com/content/groups/sbt-ivy
 
 # vim
 alias vim='vim -p'
