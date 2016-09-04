@@ -4,3 +4,6 @@
 [submodule "vundle"]
   path = .config/vim/bundle/Vundle.vim
   url = https://github.com/gmarik/Vundle.vim.git
+[submodule ".config/zsh-nvm"]
+	path = .config/zsh-nvm
+	url = git@github.com:lukechilds/zsh-nvm

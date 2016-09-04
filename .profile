@@ -79,3 +79,4 @@ export NCURSES_NO_UTF8_ACS=1
 
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.3.3/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.3.3/libexec
+[[ -f /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh ]] && source /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh
