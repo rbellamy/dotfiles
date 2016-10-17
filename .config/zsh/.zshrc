@@ -326,15 +326,8 @@ zle -N down-line-or-history-beginning-search-forward
 # }}}
 
 # zle keybindings (vim-like) {{{
-# make zsh/terminfo work for terms with application and cursor modes
-case "$TERM" in
-  vte*|xterm*)
-    zle-line-init() { zle-keymap-select; echoti smkx }
-    zle-line-finish() { echoti rmkx }
-    zle -N zle-line-init
-    zle -N zle-line-finish
-    ;;
-esac
+# create a zkbd compatible hash;
+# to add other keys to this hash, see man 5 terminfo
 # vi editing mode
 bindkey -v
 # shift-tab
@@ -431,6 +424,15 @@ bindkey -M vicmd   'v'                edit-command-line
 # fancy <C-z>
 bindkey            '^Z'               fancy-ctrl-z
 bindkey -M vicmd   '^Z'               fancy-ctrl-z
+# make zsh/terminfo work for terms with application and cursor modes
+case "$TERM" in
+  vte*|xterm*|screen*)
+    zle-line-init() { zle-keymap-select; echoti smkx }
+    zle-line-finish() { echoti rmkx }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+    ;;
+esac
 # }}}
 
 # directory setup {{{
