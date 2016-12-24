@@ -139,7 +139,7 @@ alias df='df -h'
 alias du='du -h'
 alias free='free -m'
 alias cp='cp -iv'
-alias grep="grep --color=auto"
+alias grep="egrep --color=auto"
 alias mv='mv -iv'
 alias ln='ln -iv'
 alias install='install -v'
