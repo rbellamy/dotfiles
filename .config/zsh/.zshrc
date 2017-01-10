@@ -227,6 +227,11 @@ case "$TERM" in
     ;;
 esac
 
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add ~/.ssh/id_rsa*~*.pub~*.ppk
+fi
+
 # show_mod_parameters {{{
 #
 autoload show_mod_parameter_info
