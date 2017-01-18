@@ -277,13 +277,16 @@ precmd() {
   psvar[4]=${vcs_info_msg_1_}
 }
 # start ssh-agent
+add_ssh_keys() {
+  ssh-add ~/.ssh/id_rsa*~*.pub~*.ppk
+}
 start_ssh_agent() {
   if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
-    ssh-add ~/.ssh/id_rsa*~*.pub~*.ppk
+    add_ssh_keys
   fi
 }
-start_ssh_agent
+autoload start_ssh_agent
 
 # history search - returns historical commands like
 h() {
