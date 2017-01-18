@@ -227,11 +227,6 @@ case "$TERM" in
     ;;
 esac
 
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add ~/.ssh/id_rsa*~*.pub~*.ppk
-fi
-
 # show_mod_parameters {{{
 #
 autoload show_mod_parameter_info
@@ -281,6 +276,14 @@ precmd() {
   psvar[3]=${vcs_info_msg_0_}
   psvar[4]=${vcs_info_msg_1_}
 }
+# start ssh-agent
+start_ssh_agent() {
+  if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+    ssh-add ~/.ssh/id_rsa*~*.pub~*.ppk
+  fi
+}
+start_ssh_agent
 
 # history search - returns historical commands like
 h() {
