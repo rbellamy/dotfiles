@@ -2,7 +2,7 @@
 #(( $UID == 0 )) && umask=0022 || umask=0027
 
 # constant environment variables
-export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
@@ -80,7 +80,11 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.3.3/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.3.3/libexec
 [[ -f /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh ]] && source /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh
+
+export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
