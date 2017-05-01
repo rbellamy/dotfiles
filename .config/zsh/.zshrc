@@ -294,7 +294,7 @@ h() {
   if [ -z "$*" ]; then
     history -i 1;
   else
-    history -i 1 | egrep "$@";
+    history -i 1 | egrep --color=auto "$@";
   fi
 }
 

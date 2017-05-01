@@ -8,8 +8,6 @@ export PLATFORM=$(uname -s)
 # JAVA_OPTIONS
 [[ "$PLATFORM" == "Darwin" ]] && JHOME=$(/usr/libexec/java_home) || JHOME=/usr/lib/jvm/default
 export JAVA_HOME="$JHOME"
-# IntelliJ IDEA JDK
-[[ "$PLATFORM" == "Linux" ]] && export IDEA_JDK="/usr/lib/jvm/java-8-openjdk"
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
 # manpage colors in less
