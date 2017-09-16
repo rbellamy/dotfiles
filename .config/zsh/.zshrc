@@ -174,6 +174,7 @@ have hub && alias git=hub
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
 have apacman && alias apacman="apacman --noedit --noconfirm"
+have pacaur && alias pacaur="deactivate && nvm use system && rvm use system && pacaur"
 have sbt && alias sbt="sbt -sbt-launch-repo https://nexus.terradatum.com/content/groups/sbt-ivy"
 have awless && source <(awless completion zsh)
 
