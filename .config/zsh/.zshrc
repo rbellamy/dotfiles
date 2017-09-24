@@ -171,6 +171,7 @@ alias weechat-curses='dtach -A $XDG_RUNTIME_DIR/weechat weechat-curses'
 alias mutt='dtach -A $XDG_RUNTIME_DIR/mutt mutt -F ~/.config/mutt/muttrc'
 alias sprunge="curl -F 'sprunge=<-' sprunge.us"
 have hub && alias git=hub
+alias dotfiles='git --git-dir=$HOME/.dot/ --work-tree=$HOME'
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
 have apacman && alias apacman="apacman --noedit --noconfirm"
