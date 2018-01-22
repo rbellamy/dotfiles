@@ -1,6 +1,6 @@
 # ~/.profile
 #(( $UID == 0 )) && umask=0022 || umask=0027
-
+#have() { which $1 &>/dev/null || return 1 }
 # constant environment variables
 export PATH="$HOME/.local/bin:$PATH"
 export PLATFORM=$(uname -s)
@@ -81,8 +81,10 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
 
 [[ -s "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
