@@ -171,6 +171,7 @@ alias weechat-curses='dtach -A $XDG_RUNTIME_DIR/weechat weechat-curses'
 alias mutt='dtach -A $XDG_RUNTIME_DIR/mutt mutt -F ~/.config/mutt/muttrc'
 alias sprunge="curl -F 'sprunge=<-' sprunge.us"
 have hub && alias git='hub --no-pager'
+#have repose && alias eanna='repose -vf eanna -r /var/cache/pacman/eanna'
 alias dotfiles='git --git-dir=$HOME/.dot/ --work-tree=$HOME'
 alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
 # pacman
