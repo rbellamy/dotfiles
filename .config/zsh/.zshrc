@@ -169,7 +169,9 @@ alias rh=rehash
 alias dirs='dirs -p'
 alias weechat-curses='dtach -A $XDG_RUNTIME_DIR/weechat weechat-curses'
 alias mutt='dtach -A $XDG_RUNTIME_DIR/mutt mutt -F ~/.config/mutt/muttrc'
-alias sprunge="curl -F 'sprunge=<-' sprunge.us"
+alias sprunge="curl -F c=@- https://sprunge.us"
+alias ptpb="curl -F c=@- https://ptpb.pw"
+alias ix="curl -F c=@- https://ix.io"
 have hub && alias git='hub --no-pager'
 #have repose && alias eanna='repose -vf eanna -r /var/cache/pacman/eanna'
 alias dotfiles='git --git-dir=$HOME/.dot/ --work-tree=$HOME'
@@ -456,6 +458,9 @@ esac
 [ ! -d "$XDG_CACHE_HOME"/vim/backup ] && mkdir "$XDG_CACHE_HOME"/vim/backup
 [ ! -d "$XDG_CACHE_HOME"/vim/undo ] && mkdir "$XDG_CACHE_HOME"/vim/undo
 [ ! -d "$XDG_CONFIG_HOME"/vim/bundle ] && mkdir "$XDG_CONFIG_HOME"/vim/bundle
+[ ! -d "$XDG_CONFIG_HOME"/pg ] && mkdir "$XDG_CONFIG_HOME"/pg
+[ ! -d "$XDG_CACHE_HOME"/pg ] && mkdir "$XDG_CACHE_HOME"/pg
+[ ! -d "$XDG_CONFIG_HOME"/R ] && mkdir "$XDG_CONFIG_HOME"/R
 # }}}
 
 # cleanup {{{

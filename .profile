@@ -2,7 +2,7 @@
 #(( $UID == 0 )) && umask=0022 || umask=0027
 #have() { which $1 &>/dev/null || return 1 }
 # constant environment variables
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH:$HOME/.dotnet/tools"
 export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
@@ -46,6 +46,13 @@ export R_PROFILE_USER="$R_CONFIG_HOME"/RProfile
 export R_LIBS_USER="$R_CONFIG_HOME"/libs_%v
 export R_LIBS_USER_DEV="$R_CONFIG_HOME"/libs_dev
 export R_HISTFILE="$R_CONFIG_HOME"/RHistory
+
+# psql environment stuffs
+export PSQL_CONFIG_HOME="$XDG_CONFIG_HOME/pg"
+export PSQLRC="$PSQL_CONFIG_HOME/psqlrc"
+export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
+export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
+export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
 # default editor - visual and terminal
 export EDITOR=vim
