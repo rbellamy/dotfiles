@@ -59,7 +59,12 @@ export EDITOR=vim
 export VISUAL=vim
 
 # less is more
-export PAGER=less
+export YELLOW=`echo -e '\033[1;33m'`
+export LIGHT_CYAN=`echo -e '\033[1;36m'`
+export GREEN=`echo -e '\033[0;32m'`
+export NOCOLOR=`echo -e '\033[0m'`
+export LESS="-iMSx4 -FXR"
+export PAGER="sed \"s/^\(([0-9]\+ [rows]\+)\)/$GREEN\1$NOCOLOR/;s/^\(-\[\ RECORD\ [0-9]\+\ \][-+]\+\)/$GREEN\1$NOCOLOR/;s/|/$GREEN|$NOCOLOR/g;s/^\([-+]\+\)/$GREEN\1$NOCOLOR/\" 2>/dev/null | less"
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshist
 
 # browser depends on terminal or X
