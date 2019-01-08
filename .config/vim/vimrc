@@ -50,6 +50,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'lifepillar/pgsql.vim'
 "Plugin 'Lokaltog/powerline'
 
 " All vundle plugins must be added before the following line
@@ -95,6 +96,8 @@ set wildmenu wildmode=list:longest,full
 
 " omit numbers in html output
 let g:html_number_lines = 0
+" use psql.vim by default
+let g:sql_type_default = 'pgsql'
 
 " statusline -- see the powerline bit at the end
 "set showmode showcmd ruler

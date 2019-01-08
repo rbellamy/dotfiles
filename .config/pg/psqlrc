@@ -57,3 +57,9 @@
 -- If a command is run more than once in a row, only store it once in the
 -- history.
 \set HISTCONTROL ignoredups
+
+-- Clear the screen
+\set clear '\\! clear;'
+
+-- Uptime
+\set uptime 'select now() - backend_start as uptime from pg_stat_activity where pid = pg_backend_pid();'
