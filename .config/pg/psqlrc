@@ -52,7 +52,7 @@
 \x auto
 
 -- Use a separate history file per-database.
-\set HISTFILE $XDG_CACHE_HOME/pg/psql_history- :DBNAME
+\set HISTFILE ~/.cache/pg/psql_history- :USER - :HOST - :PORT - :DBNAME
 
 -- If a command is run more than once in a row, only store it once in the
 -- history.
