@@ -51,6 +51,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'lifepillar/pgsql.vim'
+Plugin 'vim-scripts/dbext.vim'
 "Plugin 'Lokaltog/powerline'
 
 " All vundle plugins must be added before the following line
@@ -98,6 +99,18 @@ set wildmenu wildmode=list:longest,full
 let g:html_number_lines = 0
 " use psql.vim by default
 let g:sql_type_default = 'pgsql'
+
+" Each profile has the form:
+" g:dbext_default_profile_'profilename' = 'var=value:var=value:...'
+let g:dbext_default_profile_local = 'type=PGSQL:host=localhost:port=5432:dbname=postgres:user=rbellamy'
+let g:dbext_default_profile_local_edb = 'type=PGSQL:host=localhost:port=5444:dbname=edb:user=enterprisedb'
+let g:dbext_default_profile_metrics_prod = 'type=PGSQL:host=ppas-metrics-master-prod:port=5444:dbname=metrics:user=enterprisedb'
+let g:dbext_default_profile_mls_prod = 'type=PGSQL:host=ppas-mls-master-prod:port=5444:dbname=mls:user=enterprisedb'
+let g:dbext_default_profile_metrics_stage = 'type=PGSQL:host=ppas-metrics-1.stage:port=5444:dbname=metrics:user=enterprisedb'
+let g:dbext_default_profile_mls_stage = 'type=PGSQL:host=ppas-mls-1.stage:port=5444:dbname=mls:user=enterprisedb'
+let g:dbext_default_profile_metrics_dev = 'type=PGSQL:host=ppas-metrics-1.dev:port=5444:dbname=metrics:user=enterprisedb'
+let g:dbext_default_profile_mlsdev = 'type=PGSQL:host=ppas-mls-1.dev:port=5444:dbname=mls:user=enterprisedb'
+let g:dbext_default_profile = 'metrics_prod'
 
 " statusline -- see the powerline bit at the end
 "set showmode showcmd ruler
