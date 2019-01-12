@@ -179,7 +179,6 @@ alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7
 # pacman
 have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
 have apacman && alias apacman="apacman --noedit --noconfirm"
-have pacaur && alias pacaur="deactivate && nvm use system && rvm use system && pacaur"
 have sbt && alias sbt="sbt -sbt-launch-repo https://nexus.terradatum.com/content/groups/sbt-ivy"
 have awless && source <(awless completion zsh)
 
@@ -465,4 +464,8 @@ esac
 
 # cleanup {{{
 unset isroot app
+# {{{
+# de-dupe PATH
+PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
+# }}}
 # }}}
