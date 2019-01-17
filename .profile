@@ -95,7 +95,7 @@ export GPG_TTY=$(tty)
 [[ -f /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh ]] && source /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh
 
 #export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
-[[ -r "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
 [[ -r "$HOME/.local/bin/n/version" ]] && export N_PREFIX="$HOME/.local" && export PATH="$PATH:$HOME/.local/n/bin"
 

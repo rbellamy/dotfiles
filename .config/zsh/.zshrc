@@ -303,6 +303,9 @@ h() {
   fi
 }
 
+# gitignore.io
+function gi() { curl -L -s https://www.gitignore.io/api/"$@" ;}
+
 compdefas() {
   local a
   a="$1"
@@ -461,6 +464,8 @@ esac
 [ ! -d "$XDG_CACHE_HOME"/pg ] && mkdir "$XDG_CACHE_HOME"/pg
 [ ! -d "$XDG_CONFIG_HOME"/R ] && mkdir "$XDG_CONFIG_HOME"/R
 # }}}
+
+# these really should only be sourced during an interactive shell:
 
 # cleanup {{{
 unset isroot app
