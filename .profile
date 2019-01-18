@@ -2,7 +2,7 @@
 #(( $UID == 0 )) && umask=0022 || umask=0027
 #have() { which $1 &>/dev/null || return 1 }
 # constant environment variables
-export PATH="$HOME/.local/bin:$PATH:$HOME/.dotnet/tools"
+export PATH="$HOME/.local/bin:$PATH"
 export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
@@ -89,17 +89,4 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 # gpg tty
 export GPG_TTY=$(tty)
-
-[[ -d /opt/maven ]] && export M2_HOME=/opt/maven
-[[ -d /usr/local/Cellar/maven/3.3.3/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.3.3/libexec
-[[ -f /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh ]] && source /usr/local/Oracle/product/instantclient/11.2.0.4.0/share/instantclient/instantclient.sh
-
-#export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
-[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-#have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
-[[ -r "$HOME/.local/bin/n/version" ]] && export N_PREFIX="$HOME/.local" && export PATH="$PATH:$HOME/.local/n/bin"
-
-[[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
-[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
 

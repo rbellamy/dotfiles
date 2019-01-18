@@ -1,3 +1,18 @@
+# path and source magic {{{
+[[ -d /opt/maven ]] && export M2_HOME=/opt/maven
+[[ -d /usr/local/Cellar/maven/3.5.4/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.5.4/libexec
+
+#export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
+#[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
+[[ -r "$HOME/.local/bin/n/version" ]] && export N_PREFIX="$HOME/.local" && export PATH="$PATH:$HOME/.local/n/bin"
+[[ -d "$HOME/.dotnet/tools" ]] && export PATH="$PATH:$HOME/.dotnet/tools"
+
+[[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
+[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
+# }}}
+
 # update the function path {{{
 if [[ -d "/usr/local/share/zsh-completions" ]] then
   fpath=(~/.config/zsh/functions "/usr/local/share/zsh-completions" $fpath)
