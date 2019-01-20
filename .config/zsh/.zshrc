@@ -486,6 +486,8 @@ esac
 unset isroot app
 # {{{
 # de-dupe PATH
+PATH="$HOME/.local/bin:$PATH"
 PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
+export PATH
 # }}}
 # }}}

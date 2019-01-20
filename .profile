@@ -2,7 +2,6 @@
 #(( $UID == 0 )) && umask=0022 || umask=0027
 #have() { which $1 &>/dev/null || return 1 }
 # constant environment variables
-export PATH="$HOME/.local/bin:$PATH"
 export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
