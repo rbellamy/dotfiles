@@ -7,3 +7,9 @@
 [submodule ".config/zsh-nvm"]
 	path = .config/zsh-nvm
 	url = git@github.com:lukechilds/zsh-nvm
+[submodule ".config/vim/bundle/Vundle.vim"]
+	path = .config/vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
+[submodule ".config/dircolors-solarized"]
+	path = .config/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized
