@@ -106,9 +106,9 @@ export GPG_TTY=$(tty)
 
 # update the function path {{{
 if [[ -d "/usr/local/share/zsh-completions" ]] then
-  fpath=(~/.config/zsh/functions "/usr/local/share/zsh-completions" $fpath)
+  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions "/usr/local/share/zsh-completions" "${fpath[@]}")
 else
-  fpath=(~/.config/zsh/functions $fpath)
+  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions" ${fpath[@]}")
 fi
 # }}}
 
@@ -411,6 +411,17 @@ h() {
 
 # gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/"$@" ;}
+
+function dc_trace_cmd() {
+  local parent=`docker inspect -f '{{ .Parent }}' $1` 2>/dev/null
+  declare -i level=$2
+  echo ${level}: `docker inspect -f '{{ .ContainerConfig.Cmd }}' $1 2>/dev/null`
+  level=level+1
+  if [ "${parent}" != "" ]; then
+    echo ${level}: $parent
+    dc_trace_cmd $parent $level
+  fi
+}
 
 compdefas() {
   local a
