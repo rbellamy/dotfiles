@@ -106,9 +106,9 @@ export GPG_TTY=$(tty)
 
 # update the function path {{{
 if [[ -d "/usr/local/share/zsh-completions" ]] then
-  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions "/usr/local/share/zsh-completions" "${fpath[@]}")
+  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions/src "/usr/local/share/zsh-completions" "${fpath[@]}")
 else
-  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions" ${fpath[@]}")
+  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions/src "${fpath[@]}")
 fi
 # }}}
 
