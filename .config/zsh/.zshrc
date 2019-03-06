@@ -96,7 +96,7 @@ export GPG_TTY=$(tty)
 #export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
 #[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
-[[ -r "$HOME/.local/bin/n/version" ]] && export N_PREFIX="$HOME/.local" && export PATH="$PATH:$HOME/.local/n/bin"
+[[ -r "$HOME/.local/bin/n/version" ]] && export N_PREFIX="$HOME/.local/bin/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo). 
 [[ -d "$HOME/.dotnet/tools" ]] && export PATH="$PATH:$HOME/.dotnet/tools"
 
 [[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
