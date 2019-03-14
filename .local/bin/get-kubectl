@@ -1,3 +1,4 @@
 #!/usr/bin/env zsh
 [[ -d ~/.local/bin ]] || mkdir -p ~/.local/bin
-[[ -r ~/.local/bin/kubectl]] || (cd ~/.local/bin/kubectl && curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod 0755 ./kubectl
+[[ "${_system_type}" == "Darwin" ]] && [[ ! -r ~/.local/bin/kubectl ]] && (cd ~/.local/bin && curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl && chmod 0755 ./kubectl)
+[[ "${_system_type}" == "linux" ]] && [[ ! -r ~/.local/bin/kubectl ]] && (cd ~/.local/bin && curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod 0755 ./kubectl)

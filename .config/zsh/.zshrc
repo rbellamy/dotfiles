@@ -54,7 +54,10 @@ export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
 # k8s
-export KUBECONFIG="$HOME/.kube/config:$XDG_CONFIG_HOME/kube/**/config:$HOME/Development/Terradatum/vmware/infrastructure/terraform/aws/environments/**/phase2/040-eks-cluster/kubeconfig_eks-*-cluster"
+export KUBECONFIG="$HOME/.kube/config"
+KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
+KUBECONFIG+=":$HOME/Development/Terradatum/vmware/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
+KUBECONFIG+=":$HOME/Development/Terradatum/vmware/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
 
 # default editor - visual and terminal
 export EDITOR=vim
@@ -98,6 +101,7 @@ export GPG_TTY=$(tty)
 
 [[ $- == *i* ]] && source "$HOME/.local/bin/fzf/shell/completion.zsh" 2> /dev/null
 [[ -r "$HOME/.local/bin/fzf/shell/key-bindings.zsh" ]] && source "$HOME/.local/bin/fzf/shell/key-bindings.zsh"
+[[ -r "$HOME/.local/bin/kubectl" ]] && source <($HOME/.local/bin/kubectl completion zsh)
 [[ -r "$XDG_CONFIG_HOME/zsh/kube-ps1/kube-ps1.sh" ]] && source "$XDG_CONFIG_HOME/zsh/kube-ps1/kube-ps1.sh"
 
 #export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
