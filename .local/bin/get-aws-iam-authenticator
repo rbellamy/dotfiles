@@ -1,0 +1,13 @@
+#!/usr/bin/zsh
+
+[[ -d ~/.local/bin ]] || mkdir -p ~/.local/bin
+[[ ${PLATFORM} == Darwin ]] \
+  && [[ ! -r ~/.local/bin/aws-iam-authenticator ]] \
+  && (cd ~/.local/bin \
+      && curl -o aws-iam-authenticator -L https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/darwin/amd64/aws-iam-authenticator \
+      && chmod 0755 ./aws-iam-authenticator)
+[[ ${PLATFORM} == Linux ]] \
+  && [[ ! -r ~/.local/bin/aws-iam-authenticator ]] \
+  && (cd ~/.local/bin \
+      && curl -o aws-iam-authenticator -L https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator \
+      && chmod 0755 ./aws-iam-authenticator)

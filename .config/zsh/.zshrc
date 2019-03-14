@@ -1,7 +1,12 @@
-# ~/.profile
-#(( $UID == 0 )) && umask=0022 || umask=0027
-#have() { which $1 &>/dev/null || return 1 }
-# constant environment variables
+# ~/.profile {{{
+
+# checks {{{
+(( $UID == 0 )) && isroot=true || isroot=false
+# test if command is available
+have() { which $1 &>/dev/null || return 1 }
+# }}}
+
+# constant environment variables {{{
 export PLATFORM=$(uname -s)
 
 # JAVA_OPTIONS
@@ -54,7 +59,10 @@ export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
 # k8s
-export KUBECONFIG="$HOME/.kube/config:$XDG_CONFIG_HOME/kube/**/config:$HOME/Development/Terradatum/vmware/infrastructure/terraform/aws/environments/**/phase2/040-eks-cluster/kubeconfig_eks-*-cluster"
+#export KUBECONFIG="$HOME/.kube/config"
+#KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
+#KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
+#KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
 
 # default editor - visual and terminal
 export EDITOR=vim
@@ -92,23 +100,28 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 # gpg tty
 export GPG_TTY=$(tty)
 
+# }}}
+
+# }}}
+
 # path and source magic {{{
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.5.4/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.5.4/libexec
 
-[[ $- == *i* ]] && source "$HOME/.local/bin/fzf/shell/completion.zsh" 2> /dev/null
-[[ -r "$HOME/.local/bin/fzf/shell/key-bindings.zsh" ]] && source "$HOME/.local/bin/fzf/shell/key-bindings.zsh"
+#[[ $- == *i* ]] && source "$HOME/.local/bin/fzf/shell/completion.zsh" 2> /dev/null
+#[[ -r "$HOME/.local/bin/fzf/shell/key-bindings.zsh" ]] && source "$HOME/.local/bin/fzf/shell/key-bindings.zsh"
+[[ -r "$HOME/.local/bin/kubectl" ]] && source <($HOME/.local/bin/kubectl completion zsh)
 [[ -r "$XDG_CONFIG_HOME/zsh/kube-ps1/kube-ps1.sh" ]] && source "$XDG_CONFIG_HOME/zsh/kube-ps1/kube-ps1.sh"
 
 #export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
 #[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
-export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+#export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 [[ -d "$HOME/.dotnet/tools" ]] && PATH+=":$HOME/.dotnet/tools"
 
 [[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
-[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
+#[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
 # }}}
 
 # update the function path {{{
@@ -117,12 +130,6 @@ if [[ -d "/usr/local/share/zsh-completions" ]] then
 else
   fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions/src "${fpath[@]}")
 fi
-# }}}
-
-# checks {{{
-(( $UID == 0 )) && isroot=true || isroot=false
-# test if command is available
-have() { which $1 &>/dev/null || return 1 }
 # }}}
 
 # modules {{{

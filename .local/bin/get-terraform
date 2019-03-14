@@ -1,0 +1,17 @@
+#!/usr/bin/zsh
+
+[[ -d ~/.local/bin ]] || mkdir -p ~/.local/bin
+[[ ${PLATFORM} == Darwin ]] \
+  && [[ ! -r ~/.local/bin/terraform ]] \
+  && (cd ~/.local/bin \
+      && curl -o terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_darwin_amd64.zip -L https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_darwin_amd64.zip \
+      && unzip terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_darwin_amd64.zip \
+      && chmod 0755 ./terraform \
+      && rm -fv terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_darwin_amd64.zip)
+[[ ${PLATFORM} == Linux ]] \
+  && [[ ! -r ~/.local/bin/terraform ]] \
+  && (cd ~/.local/bin \
+      && curl -o terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_linux_amd64.zip -L https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_linux_amd64.zip \
+      && unzip terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_linux_amd64.zip \
+      && chmod 0755 ./terraform \
+      && rm -fv terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_linux_amd64.zip)
