@@ -5,5 +5,14 @@
   path = .config/dircolors-solarized
   url = https://github.com/seebi/dircolors-solarized
 [submodule ".config/zsh/functions/zsh-completions"]
-	path = .config/zsh/functions/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions
+  path = .config/zsh/functions/zsh-completions
+  url = https://github.com/zsh-users/zsh-completions
+[submodule ".config/zsh/kube-ps1"]
+  path = .config/zsh/kube-ps1
+  url = https://github.com/jonmosco/kube-ps1
+[submodule ".local/share/fzf"]
+	path = .local/share/fzf
+	url = https://github.com/junegunn/fzf
+[submodule ".local/share/kubectx"]
+	path = .local/share/kubectx
+	url = https://github.com/ahmetb/kubectx.git

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+IFS=', ' read -r -a HOSTS <<< "$@"
+CMD="journalctl -f"
+
+echo "Hit CTRL-C to stop"
+sleep 0.5
+PIDS=""
+for host in ${HOSTS[*]}
+do
+    ssh $host $CMD &
+   PIDS="$PIDS $!"
+done
+
+trap 'kill $PIDS' SIGINT
+
+wait

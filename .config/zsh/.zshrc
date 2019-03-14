@@ -53,6 +53,9 @@ export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
 export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
+# k8s
+export KUBECONFIG="$HOME/.kube/config:$XDG_CONFIG_HOME/kube/**/config:$HOME/Development/Terradatum/vmware/infrastructure/terraform/aws/environments/**/phase2/040-eks-cluster/kubeconfig_eks-*-cluster"
+
 # default editor - visual and terminal
 export EDITOR=vim
 export VISUAL=vim
@@ -93,11 +96,15 @@ export GPG_TTY=$(tty)
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.5.4/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.5.4/libexec
 
+[[ $- == *i* ]] && source "$HOME/.local/bin/fzf/shell/completion.zsh" 2> /dev/null
+[[ -r "$HOME/.local/bin/fzf/shell/key-bindings.zsh" ]] && source "$HOME/.local/bin/fzf/shell/key-bindings.zsh"
+[[ -r "$XDG_CONFIG_HOME/zsh/kube-ps1/kube-ps1.sh" ]] && source "$XDG_CONFIG_HOME/zsh/kube-ps1/kube-ps1.sh"
+
 #export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
 #[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
-export N_PREFIX="$HOME/.local/bin/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo). 
-[[ -d "$HOME/.dotnet/tools" ]] && export PATH="$PATH:$HOME/.dotnet/tools"
+export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+[[ -d "$HOME/.dotnet/tools" ]] && PATH+=":$HOME/.dotnet/tools"
 
 [[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -229,10 +236,10 @@ zle -N zle-keymap-select
 # %~       : current working directory, if $HOME then ~
 # %f       : reset foreground color to default
 if $isroot; then
-  PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u
+  PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u $(kube_ps1)
 %K{088}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white}%# %f%b'
 else
-  PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u
+  PROMPT='%U%B%F{white}%D{%Y-%m-%d %T}%f%b%u $(kube_ps1)
 %K{018}%n@%m%k %F{magenta}${vimode}%f %B%F{cyan}%~%f%b %F{green}%3v%f%B%F{white}%# %f%b'
 fi
 # }}}
