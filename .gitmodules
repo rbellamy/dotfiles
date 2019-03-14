@@ -5,5 +5,5 @@
   path = .config/dircolors-solarized
   url = https://github.com/seebi/dircolors-solarized
 [submodule ".config/zsh/functions/zsh-completions"]
-  path = /Users/rbellamy/.config/zsh/functions/zsh-completions
-  url = git://github.com/zsh-users/zsh-completions
+	path = .config/zsh/functions/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
