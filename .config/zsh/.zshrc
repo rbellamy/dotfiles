@@ -122,6 +122,7 @@ export GPG_TTY=$(tty)
 [[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
 #[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
+have awless && source <(awless completion zsh)
 # }}}
 
 # update the function path {{{
@@ -296,11 +297,8 @@ have hub && alias git='hub --no-pager'
 #have repose && alias eanna='repose -vf eanna -r /var/cache/pacman/eanna'
 alias dotfiles='git --git-dir=$HOME/.dot/ --work-tree=$HOME'
 alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
-# pacman
-have pacmatic && alias pacman=pacmatic && export PACMAN=/usr/bin/pacmatic
-have apacman && alias apacman="apacman --noedit --noconfirm"
-have sbt && alias sbt="sbt -sbt-launch-repo https://nexus.terradatum.com/content/groups/sbt-ivy"
-have awless && source <(awless completion zsh)
+have sbt && alias sbt='sbt -sbt-launch-repo https://nexus.terradatum.com/content/groups/sbt-ivy'
+have code-insiders && alias code='code-insiders'
 
 # vim
 alias vim='vim -p'
