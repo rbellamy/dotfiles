@@ -104,6 +104,14 @@ export GPG_TTY=$(tty)
 
 # }}}
 
+# modules {{{
+autoload -Uz compinit edit-command-line vcs_info zmv bashcompinit
+compinit
+bashcompinit
+zle -N edit-command-line
+zmodload zsh/complist
+# }}}
+
 # path and source magic {{{
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.5.4/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.5.4/libexec
@@ -119,10 +127,26 @@ export GPG_TTY=$(tty)
 #export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 [[ -d "$HOME/.dotnet/tools" ]] && PATH+=":$HOME/.dotnet/tools"
 
-[[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
+#[[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv
 #[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
 have awless && source <(awless completion zsh)
+# conda init {{{
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/rbellamy/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+  eval "$__conda_setup"
+else
+  if [ -f "/home/rbellamy/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "/home/rbellamy/anaconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/rbellamy/anaconda3/bin:$PATH"
+  fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+# }}}
 # }}}
 
 # update the function path {{{
@@ -131,14 +155,6 @@ if [[ -d "/usr/local/share/zsh-completions" ]] then
 else
   fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions/src "${fpath[@]}")
 fi
-# }}}
-
-# modules {{{
-autoload -Uz compinit edit-command-line vcs_info zmv bashcompinit
-compinit
-bashcompinit
-zle -N edit-command-line
-zmodload zsh/complist
 # }}}
 
 # completions {{{
