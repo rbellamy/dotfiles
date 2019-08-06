@@ -113,6 +113,7 @@ zmodload zsh/complist
 # }}}
 
 # path and source magic {{{
+[[ -d /etc/bash_completion.d ]] && for c in /etc/bash_completion.d/*; do source "$c"; done
 [[ -d /opt/maven ]] && export M2_HOME=/opt/maven
 [[ -d /usr/local/Cellar/maven/3.5.4/libexec ]] && export M2_HOME=/usr/local/Cellar/maven/3.5.4/libexec
 
@@ -610,9 +611,8 @@ esac
 [ ! -d "$XDG_CONFIG_HOME"/R ] && mkdir "$XDG_CONFIG_HOME"/R
 # }}}
 
-# these really should only be sourced during an interactive shell:
-
 # cleanup {{{
+# these really should only be sourced during an interactive shell:
 unset isroot app
 # {{{
 # de-dupe PATH
