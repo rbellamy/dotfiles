@@ -59,10 +59,10 @@ export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
 # k8s
-#export KUBECONFIG="$HOME/.kube/config"
-#KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
-#KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
-#KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
+export KUBECONFIG="$HOME/.kube/config"
+KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
+KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
+KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
 
 # default editor - visual and terminal
 export EDITOR=vim
@@ -125,7 +125,7 @@ zmodload zsh/complist
 #export PATH="$PATH:$HOME/.yarn/bin" # Add yarn to PATH
 #[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #have ruby && export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
-#export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 [[ -d "$HOME/.dotnet/tools" ]] && PATH+=":$HOME/.dotnet/tools"
 
 #[[ -r "$HOME/.venv/bin/activate" ]] && source "$HOME/.venv/bin/activate" # Load the Python 3 venv

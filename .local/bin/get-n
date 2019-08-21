@@ -1,0 +1,2 @@
+#!/bin/sh
+curl -L https://git.io/n-install | N_PREFIX=~/.local/share/n bash
