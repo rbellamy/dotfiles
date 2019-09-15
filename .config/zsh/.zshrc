@@ -135,19 +135,26 @@ have awless && source <(awless completion zsh)
 # conda init {{{
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/rbellamy/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/rbellamy/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
   eval "$__conda_setup"
 else
-  if [ -f "/home/rbellamy/anaconda3/etc/profile.d/conda.sh" ]; then
-    . "/home/rbellamy/anaconda3/etc/profile.d/conda.sh"
+  if [ -f "$HOME/rbellamy/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "$HOME/rbellamy/anaconda3/etc/profile.d/conda.sh"
   else
-    export PATH="/home/rbellamy/anaconda3/bin:$PATH"
+    export PATH="$HOME/rbellamy/anaconda3/bin:$PATH"
   fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 # }}}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"; fi
+
 # }}}
 
 # update the function path {{{
