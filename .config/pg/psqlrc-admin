@@ -3,57 +3,78 @@
 -- source: http://opensourcedbms.com/dbms/psqlrc-psql-startup-file-for-postgres/
 \echo
 \echo 'Administrative queries:\n'
-\echo '  :aliases          -- Show all aliases'
-\echo '  :settings         -- Server settings'
-\echo '  :conninfo         -- Server connections'
-\echo '  :activity         -- Server activity'
-\echo '  :locks            -- Lock info'
-\echo '  :blocking         -- Blocking queries'
-\echo '  :waits            -- Waiting queries'
-\echo '  :autovac_runtime  -- Whether autovacuum is running, and how long it has been running'
-\echo '  :last_vacuum      -- Last time the tables were vacuumed and analyzed'
-\echo '  :vac_ready        -- Tables autovacuum sees as eligible for vacuuming'
-\echo '  :largest_objects  -- Largest tables and indexes'
-\echo '  :dbsize           -- Database size'
-\echo '  :tablesize        -- Tables size'
-\echo '  :uselesscol       -- Useless columns'
-\echo '  :cachehit         -- Cache hit rate (effective databases are at 99% and up)'
-\echo '  :rtsize           -- Relational table sizes'
-\echo '  :tsize            -- Table sizes (alternate)'
-\echo '  :bloat            -- Table and index bloat, ordered by most wasteful'
-\echo '  :uptime           -- Server uptime'
-\echo '  :sp               -- Search path'
-\echo '  :enums            -- All the enumerated types'
-\echo '  :clear            -- Clear the terminal screen'
-\echo '  :ll               -- List the contents of the current directory'
-\echo '  :menu             -- Help Menu'
-\echo '  \\h                -- Help with SQL commands'
-\echo '  \\?                -- Help with psql commands'
+\echo '  :aliases               -- Show all aliases'
+\echo '  :settings              -- Server settings'
+\echo '  :conninfo              -- Server connections'
+\echo '  :activity              -- Server activity'
+\echo '  :ps                    -- Active queries with execution time'
+\echo '  :locks                 -- Lock info'
+\echo '  :blocking              -- Blocking queries'
+\echo '  :waits                 -- Waiting queries'
+\echo '  :long_running_queries  -- Queries taking longer than five minutes ordered by duration'
+\echo '  :autovac_runtime       -- Whether autovacuum is running, and how long it has been running'
+\echo '  :last_vacuum           -- Last time the tables were vacuumed and analyzed'
+\echo '  :vac_ready             -- Tables autovacuum sees as eligible for vacuuming'
+\echo '  :largest_objects       -- Largest tables and indexes'
+\echo '  :dbsize                -- Database size'
+\echo '  :tablesize             -- Tables size'
+\echo '  :rtsize                -- Relational table sizes'
+\echo '  :tsize                 -- Table sizes (alternate)'
+\echo '  :index_size            -- Index sizes'
+\echo '  :index_size_total      -- Total index size in MB'
+\echo '  :index_usage_table     -- Index hit rate per table (should be 99% and up)'
+\echo '  :index_usage_index     -- Index hit rate per index (should be 99% and up)'
+\echo '  :unused_indexes        -- Unused and almost unused indexes, ordered by their size relative'
+\echo '                            to the number of index scans. Exclude indexes of very small tables (< 5 pages),'
+\echo '                            where the planner will almost invariably select a sequential scan, but may not'
+\echo '                            in the future as the table grows.'
+\echo '  :missing_indexes       -- Show big tables that have too many seq. scans'
+\echo '  :uselesscol            -- Useless columns'
+\echo '  :cachehit              -- Cache hit rate (should be 99% and up)'
+\echo '  :seq_scans             -- Sequence scans, by table in descending order'
+\echo '  :bloat                 -- Table and index bloat, ordered by most wasteful'
+\echo '  :uptime                -- Server uptime'
+\echo '  :sp                    -- Search path'
+\echo '  :enums                 -- All the enumerated types'
+\echo '  :clear                 -- Clear the terminal screen'
+\echo '  :ll                    -- List the contents of the current directory'
+\echo '  :menu                  -- Help Menu'
+\echo '  \\h                     -- Help with SQL commands'
+\echo '  \\?                     -- Help with psql commands'
 
 -- Use when .psqlrc does not load this file automatically:
---\set aliases          '\\i ~/.config/pg/psqlrc-admin'
+--\set aliases               '\\i ~/.config/pg/psqlrc-admin'
 -- Use when .psqlrc loads this file automatically:
-\set aliases          '\\i ~/.config/pg/psqlrc'
-\set settings         'SELECT name, setting,unit,context FROM pg_settings'
-\set locks            'cat ~/.config/pg/aliases/locks.sql'
-\set blocking         'cat ~/.config/pg/aliases/blocking.sql'
-\set conninfo         'SELECT usename, count(*) FROM pg_stat_activity GROUP BY usename;'
-\set activity         'cat ~/.config/pg/aliases/activity.sql'
-\set waits            'cat ~/.config/pg/aliases/waits.sql'
-\set autovac_runtime  'cat ~/.config/pg/aliases/autovac_runtime.sql'
-\set last_vacuum      'cat ~/.config/pg/aliases/last_vacuum_analyze.sql'
-\set vac_ready        'cat ~/.config/pg/aliases/vac_ready.sql'
-\set largest_objects  'cat ~/.config/pg/aliases/largest_objects.sql'
-\set dbsize           'cat ~/.config/pg/aliases/dbsize.sql'
-\set tablesize        'cat ~/.config/pg/aliases/tablesize.sql'
-\set uselesscol       'cat ~/.config/pg/aliases/uselesscol.sql'
-\set cache_hit        'cat ~/.config/pg/aliases/cache_hit.sql'
+\set aliases               '\\i ~/.config/pg/psqlrc'
+\set settings              'SELECT name, setting,unit,context FROM pg_settings'
+\set locks                 `cat ~/.config/pg/aliases/locks.sql`
+\set blocking              `cat ~/.config/pg/aliases/blocking.sql`
+\set conninfo              'SELECT usename, count(*) FROM pg_stat_activity GROUP BY usename;'
+\set activity              `cat ~/.config/pg/aliases/activity.sql`
+\set ps                    `cat ~/.config/pg/aliases/ps.sql`
+\set waits                 `cat ~/.config/pg/aliases/waits.sql`
+\set long_running_queries  `cat ~/.config/pg/aliases/long_running_queries.sql`
+\set autovac_runtime       `cat ~/.config/pg/aliases/autovac_runtime.sql`
+\set last_vacuum           `cat ~/.config/pg/aliases/last_vacuum_analyze.sql`
+\set vac_ready             `cat ~/.config/pg/aliases/vac_ready.sql`
+\set largest_objects       `cat ~/.config/pg/aliases/largest_objects.sql`
+\set dbsize                `cat ~/.config/pg/aliases/dbsize.sql`
+\set tablesize             `cat ~/.config/pg/aliases/tablesize.sql`
 -- rtsize and tsize source: https://gist.github.com/pivaldi/4054440
-\set rtsize           'cat ~/.config/pg/aliases/rtsize.sql'
-\set tsize            'cat ~/.config/pg/aliases/tsize.sql'
-\set bloat            'cat ~/.config/pg/aliases/bloat.sql'
-\set uptime           'SELECT now() - pg_postmaster_start_time() AS uptime;'
-\set sp               'SHOW search_path;'
-\set enums            'cat ~/.config/pg/aliases/enums.sql'
-\set clear            '\\! clear;'
-\set ll               '\\! ls -lrt;'
+\set rtsize                `cat ~/.config/pg/aliases/rtsize.sql`
+\set tsize                 `cat ~/.config/pg/aliases/tsize.sql`
+\set index_size            `cat ~/.config/pg/aliases/index_size.sql`
+\set index_size_total      `cat ~/.config/pg/aliases/index_size_total.sql`
+\set index_usage_table     `cat ~/.config/pg/aliases/index_usage_table.sql`
+\set index_usage_index     `cat ~/.config/pg/aliases/index_usage_index.sql`
+\set unused_indexes        `cat ~/.config/pg/aliases/unused_indexes.sql`
+\set missing_indexes       `cat ~/.config/pg/aliases/missing_indexes.sql`
+\set uselesscol            `cat ~/.config/pg/aliases/uselesscol.sql`
+\set cache_hit             `cat ~/.config/pg/aliases/cache_hit.sql`
+\set seq_scans             `cat ~/.config/pg/aliases/seq_scans.sql`
+\set bloat                 `cat ~/.config/pg/aliases/bloat.sql`
+\set uptime                'SELECT now() - pg_postmaster_start_time() AS uptime;'
+\set sp                    'SHOW search_path;'
+\set enums                 `cat ~/.config/pg/aliases/enums.sql`
+\set clear                 '\\! clear;'
+\set ll                    '\\! ls -lrt;'

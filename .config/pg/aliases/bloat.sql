@@ -4,7 +4,7 @@ SELECT tablename AS TABLE_NAME,
                  ELSE sml.relpages/otta::numeric
              END, 1) AS table_bloat,
        CASE
-           WHEN relpages < otta THEN ''0''
+           WHEN relpages < otta THEN '0'
            ELSE pg_size_pretty((bs*(sml.relpages-otta)::bigint)::bigint)
        END AS table_waste,
        iname AS index_name,
@@ -14,7 +14,7 @@ SELECT tablename AS TABLE_NAME,
                  ELSE ipages/iotta::numeric
              END, 1) AS index_bloat,
        CASE
-           WHEN ipages < iotta THEN ''0''
+           WHEN ipages < iotta THEN '0'
            ELSE pg_size_pretty((bs*(ipages-iotta))::bigint)
        END AS index_waste
 FROM
@@ -27,7 +27,7 @@ FROM
                                                 WHEN datahdr%ma=0 THEN ma
                                                 ELSE datahdr%ma
                                             END))+nullhdr2+4))/(bs-20::float)) AS otta,
-          COALESCE(c2.relname, ''?'') AS iname,
+          COALESCE(c2.relname, '?') AS iname,
           COALESCE(c2.reltuples, 0) AS ituples,
           COALESCE(c2.relpages, 0) AS ipages,
           COALESCE(CEIL((c2.reltuples*(datahdr-12))/(bs-20::float)), 0) AS iotta
@@ -61,28 +61,22 @@ FROM
          FROM pg_stats s,
 
            (SELECT
-              (SELECT current_setting(''block_size'')::numeric) AS bs,
+              (SELECT current_setting('block_size')::numeric) AS bs,
                    CASE
-                       WHEN substring(v, 12, 3) IN (''8.0'',
-                                                         ''8.1'',
-                                                              ''8.2'') THEN 27
+                       WHEN substring(v, 12, 3) IN ('8.0', '8.1', '8.2') THEN 27
                        ELSE 23
                    END AS hdr,
                    CASE
-                       WHEN v ~ ''mingw32'' THEN 8
+                       WHEN v ~ 'mingw32' THEN 8
                        ELSE 4
                    END AS ma
             FROM
               (SELECT version() AS v) AS foo) AS constants
-         GROUP BY 1,
-                  2,
-                  3,
-                  4,
-                  5) AS foo) AS rs
+         GROUP BY 1, 2, 3, 4, 5) AS foo) AS rs
    JOIN pg_class cc ON cc.relname = rs.tablename
    JOIN pg_namespace nn ON cc.relnamespace = nn.oid
    AND nn.nspname = rs.schemaname
-   AND nn.nspname <> ''information_schema''
+   AND nn.nspname <> 'information_schema'
    LEFT JOIN pg_index i ON indrelid = cc.oid
    LEFT JOIN pg_class c2 ON c2.oid = i.indexrelid) AS sml
 ORDER BY CASE
