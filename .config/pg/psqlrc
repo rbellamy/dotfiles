@@ -1,6 +1,5 @@
 -- Modified from: https://github.com/baburdick/psqlrc-files
 
-\set QUIET 1
 -- Prevent noisy loading of psqlrc file
 \set QUIET yes
 
@@ -12,7 +11,7 @@
 -- Consider: http://petereisentraut.blogspot.com/2009/09/how-to-set-xterm-titles-in-psql.html
 
 --host/db specific history files
-\set HISTFILE ~/.psql_history- :HOST - :DBNAME
+\set HISTFILE ~/.config/pg/psql_history- :HOST - :DBNAME
 
 -- Show timing info for queries
 \timing
