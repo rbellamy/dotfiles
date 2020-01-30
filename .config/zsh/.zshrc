@@ -135,14 +135,14 @@ have awless && source <(awless completion zsh)
 # conda init {{{
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/rbellamy/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
   eval "$__conda_setup"
 else
-  if [ -f "$HOME/rbellamy/anaconda3/etc/profile.d/conda.sh" ]; then
-    . "$HOME/rbellamy/anaconda3/etc/profile.d/conda.sh"
+  if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "$HOME/anaconda3/etc/profile.d/conda.sh"
   else
-    export PATH="$HOME/rbellamy/anaconda3/bin:$PATH"
+    export PATH="$HOME/anaconda3/bin:$PATH"
   fi
 fi
 unset __conda_setup
@@ -314,9 +314,8 @@ alias rh=rehash
 alias dirs='dirs -p'
 alias weechat-curses='dtach -A $XDG_RUNTIME_DIR/weechat weechat-curses'
 alias mutt='dtach -A $XDG_RUNTIME_DIR/mutt mutt -F ~/.config/mutt/muttrc'
-alias sprunge="curl -F c=@- https://sprunge.us"
-alias ptpb="curl -F c=@- https://ptpb.pw"
-alias ix="curl -F c=@- https://ix.io"
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias ix="curl -F 'f:1=<-' ix.io"
 have hub && alias git='hub --no-pager'
 #have repose && alias eanna='repose -vf eanna -r /var/cache/pacman/eanna'
 alias dotfiles='git --git-dir=$HOME/.dot/ --work-tree=$HOME'

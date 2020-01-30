@@ -7,11 +7,21 @@
 -- http://i-dba.blogspot.se/2014/02/colorizing-psql-prompt-guide.html
 -- %m -> short hostname; %M -> full hostname
 \set PROMPT1 '\n%[%033[1;31m%]➤ %[%033[2;37m%]%`\! date "+%F %I:%M %p %Z"`%[%033[0m%] %[%033[1;36m%]%n%[%033[34m%]@%[%033[1;36m%]%M:%>%[%033[1;33m%]/%/ %[%033[1;31m%]%x %[%033[K%]%[%033[0m%]\n%[%033[1;33m%]%R%#%[%033[0m%] '
-\set PROMPT2 '%[%033[1;33m%]%R%#%[%033[0m%] '
+--\set PROMPT2 '%[%033[1;33m%]%R%#%[%033[0m%] '
+-- Ensure second prompt is empty to facilitate easier copying
+-- of multiline SQL statements into other editors/tools.
+\set PROMPT2 ''
 -- Consider: http://petereisentraut.blogspot.com/2009/09/how-to-set-xterm-titles-in-psql.html
 
 --host/db specific history files
-\set HISTFILE ~/.config/pg/psql_history- :HOST - :DBNAME
+--\echo `case :HOST in /*) echo local;; *) echo :HOST ;; esac`
+\set HISTFILE ~/.config/pg/psql_history-`case :HOST in /*) echo local;; *) echo :HOST ;; esac`- :DBNAME
+
+-- Get rid of duplicates in history
+\set HISTCONTROL ignoredups
+
+-- BIG history
+\set HISTSIZE 10000
 
 -- Show timing info for queries
 \timing
@@ -21,9 +31,6 @@
 
 -- Allow pasting of values to avoid stupid indenting
 \set paste
-
--- Get rid of duplicates in history
-\set HISTCONTROL ignoredups
 
 -- Protect against results floods
 --\set FETCH_COUNT 1000
@@ -37,8 +44,12 @@
 -- use best available output format
 \x auto
 
--- use unicode encoding
+-- use unicode encoding and linestyle
 \encoding unicode
+\pset linestyle 'unicode'
+\pset unicode_border_linestyle single
+\pset unicode_column_linestyle single
+\pset unicode_header_linestyle double
 
 -- Set noisyness back to normal
 \unset QUIET
