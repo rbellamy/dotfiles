@@ -168,6 +168,7 @@ fi
 # completions {{{
 # Because .profile/.zprofile are loaded BEFORE .zshrc
 [[ -r "/usr/local/share/zsh/site-functions/_aws" ]] && source "/usr/local/share/zsh/site-functions/_aws"
+[[ -r "/usr/bin/aws_zsh_completer.sh" ]] && source "/usr/bin/aws_zsh_completer.sh"
 # }}}
 
 # shell options {{{
