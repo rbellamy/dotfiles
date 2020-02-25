@@ -58,6 +58,9 @@ export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
 export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
+# go path
+export "$HOME/Development/go"
+
 # k8s
 export KUBECONFIG="$HOME/.kube/config"
 KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
