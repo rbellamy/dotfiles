@@ -59,7 +59,8 @@ export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
 # go path
-export "$HOME/Development/go"
+export GOPATH="$HOME/Development/go"
+PATH+=":$GOPATH/bin"
 
 # k8s
 export KUBECONFIG="$HOME/.kube/config"
@@ -630,4 +631,5 @@ PATH="$HOME/.local/bin:$PATH"
 PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
 export PATH
 # }}}
+#
 # }}}

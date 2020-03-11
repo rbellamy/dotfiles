@@ -46,10 +46,14 @@
 
 -- use unicode encoding and linestyle
 \encoding unicode
-\pset linestyle 'unicode'
-\pset unicode_border_linestyle single
-\pset unicode_column_linestyle single
-\pset unicode_header_linestyle double
+--\pset linestyle 'unicode'
+--\pset unicode_border_linestyle single
+--\pset unicode_column_linestyle single
+--\pset unicode_header_linestyle double
+
+-- use ISO date formats and intervals
+SET DateStyle='ISO, MDY';
+SET IntervalStyle='iso_8601';
 
 -- Set noisyness back to normal
 \unset QUIET
@@ -61,3 +65,4 @@
 \ir ~/.config/pg/psqlrc-admin
 
 \echo '\nCurrent Host Server Date Time : '`date` '\n'
+
