@@ -108,6 +108,14 @@ export GPG_TTY=$(tty)
 
 # }}}
 
+# update the function path {{{
+if [[ -d "/usr/local/share/zsh-completions" ]] then
+  fpath=(~/.config/zsh/functions/**/ /usr/local/share/zsh-completions "${fpath[@]}")
+else
+  fpath=(~/.config/zsh/functions/**/ "${fpath[@]}")
+fi
+# }}}
+
 # modules {{{
 autoload -Uz compinit edit-command-line vcs_info zmv bashcompinit
 compinit
@@ -136,6 +144,19 @@ export N_PREFIX="$HOME/.local/share/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || 
 #[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
 have awless && source <(awless completion zsh)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"; fi
+
+# Because .profile/.zprofile are loaded BEFORE .zshrc
+[[ -r "/usr/local/share/zsh/site-functions/_aws" ]] && source "/usr/local/share/zsh/site-functions/_aws"
+[[ -r "/usr/bin/aws_zsh_completer.sh" ]] && source "/usr/bin/aws_zsh_completer.sh"
+
+#}}}
+
 # conda init {{{
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -150,34 +171,11 @@ else
   fi
 fi
 unset __conda_setup
+# <<< conda initialize <<<
 
-if [[ -d "~/.config/zsh/functions/conda-zsh-completions" ]] then
-  fpath=(~/.config/zsh/functions/conda-zsh-completions "${fpath[@]}")
+if [[ -d "~/.config/zsh/functions/conda-zsh-completion" ]] then
   zstyle ":conda_zsh_completion:*" use-groups true
 fi
-# <<< conda initialize <<<
-# }}}
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"; fi
-
-# }}}
-
-# update the function path {{{
-if [[ -d "/usr/local/share/zsh-completions" ]] then
-  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions/src "/usr/local/share/zsh-completions" "${fpath[@]}")
-else
-  fpath=(~/.config/zsh/functions ~/.config/zsh/functions/zsh-completions/src "${fpath[@]}")
-fi
-# }}}
-
-# completions {{{
-# Because .profile/.zprofile are loaded BEFORE .zshrc
-[[ -r "/usr/local/share/zsh/site-functions/_aws" ]] && source "/usr/local/share/zsh/site-functions/_aws"
-[[ -r "/usr/bin/aws_zsh_completer.sh" ]] && source "/usr/bin/aws_zsh_completer.sh"
 # }}}
 
 # shell options {{{
