@@ -11,3 +11,6 @@
   path = .config/zsh/kube-ps1
   url = https://github.com/jonmosco/kube-ps1
 
+[submodule "/home/rbellamy/.config/zsh/functions/conda-zsh-completion"]
+	path = /home/rbellamy/.config/zsh/functions/conda-zsh-completion
+	url = https://github.com/esc/conda-zsh-completion

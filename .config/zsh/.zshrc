@@ -150,6 +150,11 @@ else
   fi
 fi
 unset __conda_setup
+
+if [[ -d "~/.config/zsh/functions/conda-zsh-completions" ]] then
+  fpath=(~/.config/zsh/functions/conda-zsh-completions "${fpath[@]}")
+  zstyle ":conda_zsh_completion:*" use-groups true
+fi
 # <<< conda initialize <<<
 # }}}
 
@@ -233,6 +238,7 @@ zstyle ':completion:*:processes-names' command 'ps -eo comm'
 zstyle ':completion:*' use-cache on
 # don't complete working directory in parent
 zstyle ':completion:*' ignore-parents parent pwd
+zstyle ':completion::complete:*' gain-privileges 1
 # }}}
 
 # title (for vte, xterm and rxvt) {{{
