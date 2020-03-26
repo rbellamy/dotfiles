@@ -59,14 +59,25 @@ export PGPASSFILE="$PSQL_CONFIG_HOME/pgpass"
 export PGSERVICEFILE="$PSQL_CONFIG_HOME/pg_service.conf"
 
 # go path
-export GOPATH="$HOME/Development/go"
-PATH+=":$GOPATH/bin"
+if [[ -d "$HOME/Development/go" ]] then
+  export GOPATH="$HOME/Development/go"
+  PATH+=":$GOPATH/bin"
+fi
+
+# docker cli-plugins
+if [[ -d "/usr/lib/docker/cli-plugins" ]] then
+  PATH+=":/usr/lib/docker/cli-plugins"
+elif [[ -d "/usr/libexec/docker/cli-plugins" ]] then
+  PATH+=":/usr/libexec/docker/cli-plugins"
+fi
 
 # k8s
 export KUBECONFIG="$HOME/.kube/config"
 KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
-KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
-KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
+if [[ -d "$HOME/Development/Terradatum/k8s" ]] then
+  KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
+  KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
+fi
 
 # default editor - visual and terminal
 export EDITOR=vim
