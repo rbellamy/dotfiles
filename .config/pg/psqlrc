@@ -53,7 +53,7 @@
 
 -- use ISO date formats and intervals
 SET DateStyle='ISO, MDY';
-SET IntervalStyle='iso_8601';
+--SET IntervalStyle='iso_8601';
 
 -- Set noisyness back to normal
 \unset QUIET
