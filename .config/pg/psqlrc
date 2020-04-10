@@ -26,9 +26,6 @@
 -- Show timing info for queries
 \timing
 
--- Pager settings to support color
-\pset pager always
-
 -- Allow pasting of values to avoid stupid indenting
 \set paste
 
@@ -38,20 +35,28 @@
 -- Automatically upcase keywords (works only intermittently)
 \set COMP_KEYWORD_CASE upper
 
+-- Pager settings to support color
+\pset pager always
+
+-- Wrap long lines to fit inside the terminal
+\pset format wrapped
+
 -- Show NULLs as: [NULL]
 \pset null '[NULL]'
 
--- use best available output format
+-- Use best available output format
 \x auto
 
--- use unicode encoding and linestyle
+-- Use unicode encoding and linestyle
 \encoding unicode
---\pset linestyle 'unicode'
---\pset unicode_border_linestyle single
---\pset unicode_column_linestyle single
---\pset unicode_header_linestyle double
+\pset linestyle 'unicode'
+\pset border 2
 
--- use ISO date formats and intervals
+-- Switch pagers with :x and :xx commands
+\set x '\\setenv PAGER \'less -iMx4 -FX\''
+\set xx '\\setenv PAGER \'pspg -bX --no-mouse\''
+
+-- Use ISO date formats and intervals
 SET DateStyle='ISO, MDY';
 --SET IntervalStyle='iso_8601';
 
@@ -65,4 +70,3 @@ SET DateStyle='ISO, MDY';
 \ir ~/.config/pg/psqlrc-admin
 
 \echo '\nCurrent Host Server Date Time : '`date` '\n'
-

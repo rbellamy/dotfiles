@@ -1,4 +1,6 @@
 SELECT pid,
+       application_name,
+       client_addr,
        now() - pg_stat_activity.query_start AS duration,
        query AS query
 FROM pg_stat_activity

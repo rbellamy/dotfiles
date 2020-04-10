@@ -4,7 +4,8 @@
 SELECT  datname,
         usename,
         pid,
-        waiting,
+        wait_event_type,
+        wait_event,
         current_timestamp - xact_start AS xact_runtime,
         query
 FROM pg_stat_activity

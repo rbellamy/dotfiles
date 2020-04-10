@@ -10,7 +10,6 @@
 \echo '  :ps                    -- Active queries with execution time'
 \echo '  :locks                 -- Lock info'
 \echo '  :blocking              -- Blocking queries'
-\echo '  :waits                 -- Waiting queries'
 \echo '  :long_running_queries  -- Queries taking longer than five minutes ordered by duration'
 \echo '  :autovac_runtime       -- Whether autovacuum is running, and how long it has been running'
 \echo '  :last_vacuum           -- Last time the tables were vacuumed and analyzed'
@@ -38,7 +37,7 @@
 \echo '  :enums                 -- All the enumerated types'
 \echo '  :clear                 -- Clear the terminal screen'
 \echo '  :ll                    -- List the contents of the current directory'
-\echo '  :menu                  -- Help Menu'
+--\echo '  :menu                  -- Help Menu'
 \echo '  \\h                     -- Help with SQL commands'
 \echo '  \\?                     -- Help with psql commands'
 
@@ -52,7 +51,6 @@
 \set conninfo              'SELECT usename, count(*) FROM pg_stat_activity GROUP BY usename;'
 \set activity              `cat ~/.config/pg/aliases/activity.sql`
 \set ps                    `cat ~/.config/pg/aliases/ps.sql`
-\set waits                 `cat ~/.config/pg/aliases/waits.sql`
 \set long_running_queries  `cat ~/.config/pg/aliases/long_running_queries.sql`
 \set autovac_runtime       `cat ~/.config/pg/aliases/autovac_runtime.sql`
 \set last_vacuum           `cat ~/.config/pg/aliases/last_vacuum_analyze.sql`
