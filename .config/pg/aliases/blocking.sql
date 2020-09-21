@@ -1,10 +1,13 @@
 SELECT
-  blocked_locks.pid         AS blocked_pid,
-  blocked_activity.usename  AS blocked_user,
-  blocking_locks.pid        AS blocking_pid,
-  blocking_activity.usename AS blocking_user,
-  blocked_activity.query    AS blocked_statement,
-  blocking_activity.query   AS current_statement_in_blocking_process
+  blocked_locks.pid                         AS blocked_pid,
+  blocked_activity.usename                  AS blocked_user,
+  blocked_activity.client_addr              AS blocked_user_addr,
+  blocking_locks.pid                        AS blocking_pid,
+  blocking_activity.usename                 AS blocking_user,
+  blocking_activity.client_addr             AS blocking_user_addr,
+  blocked_activity.query                    AS blocked_statement,
+  blocking_activity.query                   AS current_statement_in_blocking_process,
+  age(now(), blocking_activity.query_start) AS "age"
 FROM  pg_catalog.pg_locks blocked_locks
   JOIN pg_catalog.pg_stat_activity blocked_activity ON blocked_activity.pid = blocked_locks.pid
   JOIN pg_catalog.pg_locks blocking_locks
