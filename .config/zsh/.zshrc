@@ -72,12 +72,12 @@ elif [[ -d "/usr/libexec/docker/cli-plugins" ]] then
 fi
 
 # k8s
-export KUBECONFIG="$HOME/.kube/config"
-KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
-if [[ -d "$HOME/Development/Terradatum/k8s" ]] then
-  KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
-  KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
-fi
+# export KUBECONFIG="$HOME/.kube/config"
+# KUBECONFIG+=":$XDG_CONFIG_HOME/kube/config"
+# if [[ -d "$HOME/Development/Terradatum/k8s" ]] then
+#   KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/dev-usw2/phase2/040-eks-cluster/kubeconfig_eks-dev-cluster"
+#   KUBECONFIG+=":$HOME/Development/Terradatum/k8s/infrastructure/terraform/aws/environments/stage-prod-usw2/phase2/040-eks-cluster/kubeconfig_eks-stage-prod-cluster"
+# fi
 
 # default editor - visual and terminal
 export EDITOR=vim
