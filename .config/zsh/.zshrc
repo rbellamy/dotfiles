@@ -155,6 +155,7 @@ export N_PREFIX="$HOME/.local"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":
 #[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #[[ -r "$rvm_path/scripts/completion" ]] && source "$rvm_path/scripts/completion" # Load RVM script completions
 have awless && source <(awless completion zsh)
+have gh && source <(gh completion -s zsh)
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
